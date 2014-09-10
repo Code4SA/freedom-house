@@ -1,22 +1,15 @@
 {% extends "base.html" %}
 {% load cms_tags staticfiles sekizai_tags menu_tags %}
+{% load compress %}
 
 {% block head-css %}
   <!-- WEB FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
 
-  <!-- CORE CSS -->
-  <link href="/static/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/sky-forms.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/animate.css" rel="stylesheet" type="text/css" />
+  {% compress css %}
+  <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}less/main.less" charset="utf-8">
+  {% endcompress %}
 
-  <!-- THEME CSS -->
-  <link href="/static/css/essentials.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/layout.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/header-default.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/footer-default.css" rel="stylesheet" type="text/css" />
-  <link href="/static/css/color_scheme/darkblue.css" rel="stylesheet" type="text/css" id="color_scheme" />
 {% endblock %}
 
 {% block head-meta %}

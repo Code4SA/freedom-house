@@ -67,6 +67,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'fh', 'static'),
 )
@@ -112,8 +117,11 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    # cms admin
     'djangocms_admin_style',
     'djangocms_text_ckeditor',
+
+    # django core
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -122,11 +130,19 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
+
+    # cms core
     'cms',
     'mptt',
     'menus',
     'south',
     'sekizai',
+    'reversion',
+
+    # Asset pipeline
+    'compressor',
+
+    # cms plugins
     'djangocms_style',
     'djangocms_column',
     'djangocms_file',
@@ -137,7 +153,8 @@ INSTALLED_APPS = (
     'djangocms_picture',
     'djangocms_teaser',
     'djangocms_video',
-    'reversion',
+
+    # us
     'fh'
 )
 
@@ -178,3 +195,12 @@ DATABASES = {
     'default':
         {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'project.db', 'HOST': 'localhost', 'USER': '', 'PASSWORD': '', 'PORT': ''}
 }
+
+# asset pipeline
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.cssmin.CSSMinFilter'
+]
