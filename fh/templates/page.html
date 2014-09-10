@@ -1,8 +1,6 @@
-{% extends "base.html" %}
+{% extends "general.html" %}
 {% load cms_tags staticfiles sekizai_tags menu_tags %}
 
-{% block content %}
-<div>
-  {% placeholder "content" %}
-</div>
-{% endblock content %}
+{% block body %}
+{% placeholder "content" %}
+{% endblock body %}

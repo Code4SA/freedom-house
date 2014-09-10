@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+
+{% block content %}
+<!-- PAGE TOP -->
+<section class="page-title">
+  <div class="container">
+
+    <header>
+
+      {% block breadcrumb %}
+      {% show_breadcrumb %}
+      {% endblock %}
+
+      <h2><!-- Page Title -->
+        <strong>{% page_attribute "page_title" %}</strong>
+      </h2><!-- /Page Title -->
+
+    </header>
+
+  </div>			
+</section>
+<!-- /PAGE TOP -->
+
+<div id='main' class='container {% block main-class %}{% endblock %}'>
+  {% block body %}{% endblock %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% load cms_tags sekizai_tags menu_tags %}
+<div id="header">
+  <header id="topBar">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <h1>Freedom House</h1>
+      </a>
+    </div>
+  </header>
+
+  <header id="topNav">
+    <div class="container">
+
+      <!-- Mobile Menu Button -->
+      <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+        <i class="fa fa-bars"></i>
+      </button>
+
+      <!-- Top Nav -->
+      <div class="navbar-collapse nav-main-collapse collapse">
+        <nav class="nav-main">
+          <ul id="topMain" class="nav nav-pills nav-main">
+            {% show_menu 0 1 100 100 "menu.html" %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</div>
