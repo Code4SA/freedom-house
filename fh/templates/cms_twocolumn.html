@@ -1,0 +1,14 @@
+{% extends "general.html" %}
+{% load cms_tags %}
+
+{% block body %}
+<div class='row'>
+  <div class='main col-md-8 col-md-push-4'>
+    {% placeholder "content" %}
+  </div>
+  <div class='sidebar col-md-4 col-md-pull-8'>
+    {% static_placeholder "sitewide sidebar" %}
+    {% placeholder "sidebar" inherit %}
+  </div>
+</div>
+{% endblock %}

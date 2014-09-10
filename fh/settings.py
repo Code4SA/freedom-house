@@ -183,7 +183,9 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     ## Customize this
-    ('page.html', 'Page'),
+    ('page.html', 'Simple page'),
+    ('cms_twocolumn.html', 'Two column page'),
+    ('cms_threecolumn.html', 'Three column page'),
     ('feature.html', 'Page with Feature')
 )
 
