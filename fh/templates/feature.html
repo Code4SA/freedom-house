@@ -3,9 +3,12 @@
 
 {% block content %}
 <div class="jumbotron">
-  {% placeholder "feature" %}
+  <div class="container">
+    {% placeholder "feature" %}
+  </div>
 </div>
-<div>
+
+<section class="container">
   {% placeholder "content" %}
-</div>
+</section>
 {% endblock content %}
