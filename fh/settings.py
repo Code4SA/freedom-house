@@ -34,6 +34,7 @@ else:
     SECRET_KEY = env.get('DJANGO_SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
+ADMINS = ['greg@kempe.net']
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -234,12 +235,11 @@ LOGGING = {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
             'formatter': 'simple'
         }
     },
     'loggers': {
-        '': {
+        'django': {
             'handlers': ['console'],
             'level': 'INFO',
         }
