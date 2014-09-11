@@ -1,1 +1,1 @@
-web: gunicorn fh.wsgi:application
+web: gunicorn fh.wsgi:application --log-file -
