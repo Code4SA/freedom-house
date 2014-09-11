@@ -28,6 +28,7 @@ You will need
 ```bash
 heroku create
 heroku addons:add heroku-postgresql
+heroku addons:add newrelic:stark
 heroku config DJANGO_DEBUG=false \
               DJANGO_COMPRESS_OFFLINE=true \
               DISABLE_COLLECTSTATIC=1 \
