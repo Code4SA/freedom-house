@@ -2,6 +2,7 @@ Django==1.6.7
 Pillow==2.5.3
 South==1.0
 argparse==1.2.1
+boto==2.32.1
 dj-database-url==0.3.0
 dj-static==0.0.6
 django-appconf==0.6
@@ -11,6 +12,7 @@ django-compressor==1.4
 django-mptt==0.6.1
 django-reversion==1.8.4
 django-sekizai==0.7
+django-storages==1.1.8
 django-toolbelt==0.0.1
 djangocms-admin-style==0.2.2
 djangocms-column==1.4
