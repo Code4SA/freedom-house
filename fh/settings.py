@@ -182,7 +182,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'sekizai.context_processors.sekizai',
     'django.core.context_processors.static',
-    'cms.context_processors.cms_settings'
+    'cms.context_processors.cms_settings',
+    'lib.context_processors.google_analytics',
 )
 
 TEMPLATE_DIRS = (
@@ -190,10 +191,17 @@ TEMPLATE_DIRS = (
 )
 
 
+# Google Analytics
+GOOGLE_ANALYTICS_TRACKING_ID = env.get('DJANGO_GOOGLE_ANALYTICS_TRACKING_ID')
+GOOGLE_ANALYTICS_DOMAIN = env.get('DJANGO_GOOGLE_ANALYTICS_DOMAIN')
+
+
 # asset pipeline
 COMPRESS_OFFLINE = env.get('DJANGO_COMPRESS_OFFLINE') == 'true'
 COMPRESS_OFFLINE_CONTEXT = {
     'STATIC_URL': STATIC_URL,
+    'GOOGLE_ANALYTICS_TRACKING_ID': GOOGLE_ANALYTICS_TRACKING_ID,
+    'GOOGLE_ANALYTICS_DOMAIN': GOOGLE_ANALYTICS_DOMAIN,
 }
 
 COMPRESS_PRECOMPILERS = (
