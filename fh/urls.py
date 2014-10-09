@@ -3,11 +3,15 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 from django.conf import settings
+from django.views.generic.base import RedirectView
 from cms.sitemaps import CMSSitemap
 
 admin.autodiscover()
 
 urlpatterns = i18n_patterns('',
+    # redirect root URL back to the forums
+    url(r'^$', RedirectView.as_view(url=settings.SPEAKUP_DISCOURSE_URL, permanent=True), name='home'),
+
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': {'cmspages': CMSSitemap}}),
