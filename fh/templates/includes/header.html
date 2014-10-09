@@ -3,7 +3,7 @@
   <header id="topNav">
     <div class="container">
 
-      <a class="logo" href="/">
+      <a class="logo" href="{{ SPEAKUP_DISCOURSE_URL }}">
         <img src="{{ STATIC_URL }}images/logo.png" alt="Speak Up Mzansi">
       </a>
 
@@ -18,7 +18,7 @@
           <ul id="topMain" class="nav nav-pills nav-main">
             {% show_menu 0 1 100 100 "menu.html" %}
             <li>
-              <a href="http://speakup-forums.code4sa.org"><i class="fa fa-2x fa-comments-o"></i>Speak Up!</a>
+              <a href="{{ SPEAKUP_DISCOURSE_URL }}"><i class="fa fa-2x fa-comments-o"></i>Speak Up!</a>
             </li>
           </ul>
         </nav>

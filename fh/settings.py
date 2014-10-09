@@ -184,11 +184,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'cms.context_processors.cms_settings',
     'lib.context_processors.google_analytics',
+    'lib.context_processors.speakup',
 )
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'fh', 'templates'),
 )
+
+
+# Speak Up Mzansi
+
+SPEAKUP_DISCOURSE_URL = 'http://speakup.code4sa.org'
+SPEAKUP_INFO_URL      = 'http://speakup-info.code4sa.org' # this site
 
 
 # Google Analytics

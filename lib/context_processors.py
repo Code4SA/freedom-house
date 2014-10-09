@@ -13,3 +13,12 @@ def google_analytics(request):
             'GOOGLE_ANALYTICS_DOMAIN': ga_domain,
         }
     return {}
+
+def speakup(request):
+    """
+    Add Speak Up Mzansi related config into the context.
+    """
+    return {
+        'SPEAKUP_DISCOURSE_URL': getattr(settings, 'SPEAKUP_DISCOURSE_URL', '/'),
+        'SPEAKUP_INFO_URL': getattr(settings, 'SPEAKUP_INFO_URL', '/'),
+    }
