@@ -1,38 +1,28 @@
-#header {
-  padding-top: 2px;
-}
-
 header h1 {
   margin: 0px;
 }
 
 #topNav {
-  a.logo {
-    margin-bottom: 0px;
-    img {
-      height: 47px;
-    }
-  }
-
-  ul.nav > li {
+  ul.nav-main > li {
     a {
-      color: @primary-color;
-      line-height: 1.5em;
+      line-height: 2em;
 
       & > i.fa {
         margin-right: 4px;
         font-size: 1.5em;
       }
     }
+  }
 
-    a:hover {
-      color: @primary-color;
+  .social-links {
+    a {
+      color: @text-color;
+
+      &:hover {
+        color: @link-color;
+      }
     }
   }
-}
-
-.jumbotron h1 {
-  line-height: 1.25em;
 }
 
 .logos {
@@ -42,5 +32,11 @@ header h1 {
     background: white;
     padding: 10px;
     margin-bottom: 10px;
+  }
+}
+
+.page-title {
+  h1, h2 {
+    margin-top: 0px;
   }
 }

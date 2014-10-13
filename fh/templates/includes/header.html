@@ -1,28 +1,34 @@
 {% load cms_tags sekizai_tags menu_tags %}
 <div id="header">
   <header id="topNav">
-    <div class="container">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- Mobile Menu Button -->
+          <button class="navbar-toggle collapsed" data-toggle="collapse" data-target=".nav-main-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
 
-      <a class="logo" href="{{ SPEAKUP_DISCOURSE_URL }}">
-        <img src="{{ STATIC_URL }}images/logo.png" alt="Speak Up Mzansi">
-      </a>
+          <a class="navbar-brand" href="{{ SPEAKUP_DISCOURSE_URL }}">
+            <img src="{{ STATIC_URL }}images/logo.png" alt="Speak Up Mzansi">
+          </a>
+        </div>
 
-      <!-- Mobile Menu Button -->
-      <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
-        <i class="fa fa-bars"></i>
-      </button>
-
-      <!-- Top Nav -->
-      <div class="navbar-collapse nav-main-collapse collapse">
-        <nav class="nav-main">
-          <ul id="topMain" class="nav nav-pills nav-main">
+        <div class="navbar-collapse nav-main-collapse collapse">
+          <ul class="nav navbar-nav nav-main">
             {% show_menu 0 1 100 100 "menu.html" %}
             <li>
               <a href="{{ SPEAKUP_DISCOURSE_URL }}"><i class="fa fa-2x fa-comments-o"></i>Speak Up!</a>
             </li>
           </ul>
-        </nav>
+
+          <ul class="nav navbar-right navbar-nav social-links">
+            <li>
+              <a href="#" class="navbar-link"><i class="fa fa-2x fa-twitter-square"></i></a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
   </header>
 </div>
