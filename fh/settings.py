@@ -194,8 +194,8 @@ TEMPLATE_DIRS = (
 
 # Speak Up Mzansi
 
-SPEAKUP_DISCOURSE_URL = 'http://speakup.code4sa.org'
-SPEAKUP_INFO_URL      = 'http://speakup-info.code4sa.org' # this site
+SPEAKUP_DISCOURSE_URL = 'http://speakupmzansi.org.za'
+SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site
 
 
 # Google Analytics
