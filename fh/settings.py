@@ -43,6 +43,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 ROOT_URLCONF = 'fh.urls'
 
+# we server multiple websites based on domain
+ROOT_HOSTCONF = 'fh.hosts'
+DEFAULT_HOST = 'mxit'
+
 WSGI_APPLICATION = 'fh.wsgi.application'
 
 SITE_ID = 1
@@ -112,11 +116,15 @@ INSTALLED_APPS = (
     'djangocms_teaser',
     'djangocms_video',
 
+    # choose URLs based on domains
+    'django_hosts',
+
     # us
-    'fh'
+    'fh',
 )
 
 MIDDLEWARE_CLASSES = (
+    'django_hosts.middleware.HostsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
