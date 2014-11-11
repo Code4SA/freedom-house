@@ -1,0 +1,26 @@
+{% extends 'mxit/_base.html' %}
+{% load mxit %}
+
+{% block content %}
+<h1>Latest Discussions</h1>
+
+<a href="{{ '/' | d_url }}">Join us at SpeakUpMzansi.org.za</a>
+
+{% for category in categories %}
+  {% if category.topics %}
+    <h2>{{ category.name }} ({{ category.topic_count }})</h2>
+
+    <ul>
+      {% for topic in category.topics %}
+        <li>
+          <a href="/t/{{ topic.id }}">{{ topic.title }}</a>
+          - {{ topic.last_posted_at|short_time_ago }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}
+
+<a href="{{ '/' | d_url }}">Join us at SpeakUpMzansi.org.za</a>
+
+{% endblock %}

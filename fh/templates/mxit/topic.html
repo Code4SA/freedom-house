@@ -1,0 +1,23 @@
+{% extends 'mxit/_base.html' %}
+{% load humanize mxit %}
+
+{% block content %}
+
+<a href="/">Latest discussions</a>
+
+<h1>{{ topic.title }}</h1>
+
+<a href="{{ d_topic_url }}">Post a reply</a>
+
+<ul>
+  {% for post in posts %}
+    <li>
+      <b>{{ post.username }}</b> ({{ post.created_at|short_time_ago }} ago):
+      {{ post.cooked|safe }}
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="{{ d_topic_url }}">Post a reply</a>
+
+{% endblock %}

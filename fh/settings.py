@@ -43,6 +43,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 ROOT_URLCONF = 'fh.urls'
 
+# we server multiple websites based on domain
+ROOT_HOSTCONF = 'fh.hosts'
+DEFAULT_HOST = 'www'
+
 WSGI_APPLICATION = 'fh.wsgi.application'
 
 SITE_ID = 1
@@ -85,6 +89,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
+    'django.contrib.humanize',
 
     # store stuff in s3
     'storages',
@@ -112,11 +117,15 @@ INSTALLED_APPS = (
     'djangocms_teaser',
     'djangocms_video',
 
+    # choose URLs based on domains
+    'django_hosts',
+
     # us
-    'fh'
+    'fh',
 )
 
 MIDDLEWARE_CLASSES = (
+    'django_hosts.middleware.HostsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -195,6 +204,9 @@ TEMPLATE_DIRS = (
 # Speak Up Mzansi
 
 SPEAKUP_DISCOURSE_URL = 'http://speakupmzansi.org.za'
+SPEAKUP_DISCOURSE_USERNAME = env.get('DISCOURSE_USERNAME')
+SPEAKUP_DISCOURSE_API_KEY = env.get('DISCOURSE_API_KEY')
+
 SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site
 
 
