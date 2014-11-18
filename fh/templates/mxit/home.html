@@ -2,25 +2,24 @@
 {% load mxit %}
 
 {% block content %}
-<h1>Latest Discussions</h1>
+<h1>Latest Speak Up Mzansi Discussions</h1>
 
-<a href="{{ '/' | d_url }}">Join us at SpeakUpMzansi.org.za</a>
+<p>Building better conversations between citizens and their leaders. <a href="{{ '/' | d_url }}" onclick="window.open(this.href); return false;">Join us at SpeakUpMzansi.org.za</a></p>
 
 {% for category in categories %}
   {% if category.topics %}
     <h2>{{ category.name }} ({{ category.topic_count }})</h2>
 
-    <ul>
-      {% for topic in category.topics %}
-        <li>
-          <a href="/t/{{ topic.id }}">{{ topic.title }}</a>
-          - {{ topic.last_posted_at|short_time_ago }}
-        </li>
-      {% endfor %}
-    </ul>
+    {% for topic in category.topics %}
+      <a href="/t/{{ topic.id }}">{{ topic.title }}</a>
+      - {{ topic.last_posted_at|short_time_ago }}
+      <br>
+    {% endfor %}
   {% endif %}
 {% endfor %}
 
-<a href="{{ '/' | d_url }}">Join us at SpeakUpMzansi.org.za</a>
+<p>
+  <a href="{{ '/' | d_url }}" onclick="window.open(this.href); return false;">Join us at SpeakUpMzansi.org.za</a>
+</p>
 
 {% endblock %}
