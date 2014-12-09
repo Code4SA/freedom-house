@@ -12,7 +12,4 @@ MANAGE_FILE=${MANAGE_FILE:2}
 echo "-----> Collecting static files"
 python $MANAGE_FILE collectstatic --noinput  2>&1 | sed '/^Copying/d;/^$/d;/^ /d' | indent
 
-echo "-----> Compiling static/discourse-embedded.css"
-lessc fh/static/less/discourse-embedded.less  > staticfiles/discourse-embedded.css
-
 echo
