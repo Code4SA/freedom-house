@@ -2,11 +2,18 @@ from django.views.generic import View, TemplateView
 from fh.discourse import discourse_client, parse_timestamps
 from fh.templatetags.mxit import discourse_url
 
+import logging
+
+
+log = logging.getLogger(__name__)
+
 
 class HomepageView(TemplateView):
     template_name = 'mxit/home.html'
 
     def get_context_data(self, *args, **kwargs):
+        log.info(self.request.META)
+
         page_context = {}
         page_context['categories'] = self.get_categories()
 

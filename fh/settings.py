@@ -283,6 +283,10 @@ LOGGING = {
         'django': {
             'handlers': ['console'],
             'level': 'INFO',
+        },
+        'fh': {
+            'handlers': ['console'],
+            'level': 'INFO',
         }
     }
 }
