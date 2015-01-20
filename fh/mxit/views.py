@@ -50,7 +50,7 @@ class OAuthView(View):
         log.info("Creating MXIT user: %s" % profile)
 
         # create the discourse user linked to this mxit id
-        user = discourse_client.create_mxit_user({
+        user = discourse_client().create_mxit_user({
             'name': name,
             'email': profile['Email'],
             'username': profile['DisplayName'],
@@ -70,7 +70,7 @@ class HomepageView(TemplateView):
         return page_context
 
     def get_categories(self):
-        cats = discourse_client.categories()
+        cats = discourse_client(anonymous=True).categories()
         parse_timestamps(cats)
         return cats
 
@@ -109,7 +109,7 @@ class TopicView(TemplateView):
     def handle_user_reply(self, reply):
         # check if they're a registered user
         mxit_id = self.request.META.get('HTTP_X_MXIT_USERID_R')
-        user = discourse_client.mxit_user(mxit_id)
+        user = discourse_client().mxit_user(mxit_id)
         if not user:
             # go through the user creation flow
             return self.auth_and_create_mxit_user(mxit_id)
@@ -135,6 +135,6 @@ class TopicView(TemplateView):
 
 
     def get_topic(self, topic_id):
-        cats = discourse_client.topic('', topic_id)
+        cats = discourse_client(anonymous=True).topic('', topic_id)
         parse_timestamps(cats)
         return cats

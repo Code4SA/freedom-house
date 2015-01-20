@@ -14,10 +14,21 @@ class DiscourseClient(BaseDiscourseClient):
 
 
 # discourse client
-discourse_client = DiscourseClient(
-    SPEAKUP_DISCOURSE_URL,
-    api_username=SPEAKUP_DISCOURSE_USERNAME,
-    api_key=SPEAKUP_DISCOURSE_API_KEY)
+def discourse_client(anonymous=False):
+    """
+    If `anonymous` is True, then return a client that
+    doesn't authenticate with the server. This helps prevent
+    Admin-only topics from being visible.
+    """
+
+    if anonymous:
+        api_username = None
+        api_key = None
+    else:
+        api_username = SPEAKUP_DISCOURSE_USERNAME
+        api_key = SPEAKUP_DISCOURSE_API_KEY
+
+    return DiscourseClient(SPEAKUP_DISCOURSE_URL, api_username, api_key)
 
 def parse_timestamps(data):
     if isinstance(data, dict):
