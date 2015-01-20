@@ -10,6 +10,11 @@ class DiscourseClient(BaseDiscourseClient):
         """ Get a mxit user by id, if any. """
         return self._get('/mxit/users/{0}.json'.format(mxit_id))['user']
 
+    def create_mxit_user(self, name, email, username, mxit_id, remote_ip, **kwargs):
+        """ Get a mxit user by id, if any. """
+        return self._post('/mxit/users', name=name, username=username, email=email,
+                mxit_id=mxit_id, remote_ip=remote_ip, **kwargs)
+
 
 
 

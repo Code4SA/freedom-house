@@ -49,13 +49,13 @@ class OAuthView(View):
         log.info("Creating MXIT user: %s" % profile)
 
         # create the discourse user linked to this mxit id
-        user = discourse_client().create_mxit_user({
-            'name': name,
-            'email': profile['Email'],
-            'username': profile['DisplayName'],
-            'mxit_id': mxit_id,
-            'remote_ip': self.request.META['REMOTE_ADDR']
-            })
+        res = discourse_client().create_mxit_user(
+                name=name,
+                email=profile['Email'],
+                username=profile['DisplayName'],
+                mxit_id=mxit_id,
+                remote_ip=self.request.META['REMOTE_ADDR'])
+        log.info("Created MXIT user: %s" % res)
 
 
 class HomepageView(TemplateView):
