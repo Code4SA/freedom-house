@@ -1,7 +1,7 @@
 from django.conf.urls import url, patterns, include
 from django.conf import settings
 
-from fh.mxit.views import HomepageView, TopicView
+from fh.mxit.views import HomepageView, TopicView, OAuthView
 
 urlpatterns = patterns('',
     url(
@@ -16,4 +16,5 @@ urlpatterns = patterns('',
         kwargs  = {},
         name    = 'mxit-topic',
     ),
+    url('^auth/callback$', OAuthView.as_view()),
 )

@@ -45,7 +45,7 @@ ROOT_URLCONF = 'fh.urls'
 
 # we server multiple websites based on domain
 ROOT_HOSTCONF = 'fh.hosts'
-DEFAULT_HOST = 'www'
+DEFAULT_HOST = 'mxit'
 
 WSGI_APPLICATION = 'fh.wsgi.application'
 
@@ -213,6 +213,11 @@ SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site
 # Google Analytics
 GOOGLE_ANALYTICS_TRACKING_ID = env.get('DJANGO_GOOGLE_ANALYTICS_TRACKING_ID')
 GOOGLE_ANALYTICS_DOMAIN = env.get('DJANGO_GOOGLE_ANALYTICS_DOMAIN')
+
+
+# MXit
+MXIT_CLIENT_ID = env.get('MXIT_CLIENT_ID')
+MXIT_SECRET = env.get('MXIT_SECRET')
 
 
 # asset pipeline

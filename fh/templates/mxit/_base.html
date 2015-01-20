@@ -3,6 +3,10 @@
     <meta name="mxit" content="clear_on_new,clearscreen,no_prefix,show_progress"></meta>
   </head>
   <body>
+    {% if flash %}
+    <h1 style="color: #ff0000">{{ flash }}</h1>
+    {% endif %}
+
     {% block content %}{% endblock %}
   </body>
 </html>

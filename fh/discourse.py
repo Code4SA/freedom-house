@@ -1,8 +1,16 @@
 from dateutil.parser import parse
 
-from pydiscourse.client import DiscourseClient
+from pydiscourse.client import DiscourseClient as BaseDiscourseClient
 
 from fh.settings import SPEAKUP_DISCOURSE_URL, SPEAKUP_DISCOURSE_USERNAME, SPEAKUP_DISCOURSE_API_KEY
+
+
+class DiscourseClient(BaseDiscourseClient):
+    def mxit_user(self, mxit_id):
+        # TODO:
+        return None
+
+
 
 
 # discourse client
