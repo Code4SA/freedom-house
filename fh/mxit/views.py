@@ -36,7 +36,7 @@ class OAuthView(View):
         url = self.request.session.get('after-oauth', '/')
         return redirect(url)
 
-    def create_mxit_user():
+    def create_mxit_user(self):
         mxit_id = self.request.META.get('HTTP_X_MXIT_USERID_R')
         if not mxit_id:
             log.warn("No MXIT_USERID_R header, not authenticating.")
