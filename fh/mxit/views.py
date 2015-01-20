@@ -53,7 +53,8 @@ class OAuthView(View):
             'name': name,
             'email': profile['Email'],
             'username': profile['DisplayName'],
-            'mxit_userid': mxit_id,
+            'mxit_id': mxit_id,
+            'remote_ip': self.request.META['REMOTE_ADDR']
             })
 
 

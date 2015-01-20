@@ -126,6 +126,7 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django_hosts.middleware.HostsMiddleware',
+    'django.middleware.http.SetRemoteAddrFromForwardedFor',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

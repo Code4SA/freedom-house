@@ -7,8 +7,8 @@ from fh.settings import SPEAKUP_DISCOURSE_URL, SPEAKUP_DISCOURSE_USERNAME, SPEAK
 
 class DiscourseClient(BaseDiscourseClient):
     def mxit_user(self, mxit_id):
-        # TODO:
-        return None
+        """ Get a mxit user by id, if any. """
+        return self._get('/mxit/users/{0}.json'.format(mxit_id))['user']
 
 
 
