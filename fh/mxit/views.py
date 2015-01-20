@@ -17,7 +17,7 @@ def mxit_client(state=None):
 
 
 class OAuthView(View):
-    def get(self):
+    def get(self, request):
         """ OAuth callback after asking for perms to view user profile. """
         error = self.request.GET.get('error')
         code = self.request.GET.get('code')
@@ -30,7 +30,6 @@ class OAuthView(View):
         elif code:
             # authorized, get the auth token from mxit
             code = self.request.GET.get('code')
-            # TODO: handle errors
             self.auth_token = mxit_client().oauth.get_user_token(MXIT_SCOPE, code)
             self.create_mxit_user()
 
@@ -62,7 +61,7 @@ class HomepageView(TemplateView):
     template_name = 'mxit/home.html'
 
     def get_context_data(self, *args, **kwargs):
-        log.info(self.request.META)
+        log.debug(self.request.META)
 
         page_context = {}
         page_context['categories'] = self.get_categories()
@@ -82,7 +81,7 @@ class TopicView(TemplateView):
         self.topic_id = topic_id
         self.context = {}
 
-        log.info(self.request.META)
+        log.debug(self.request.META)
 
         # is the user trying to post a reply?
         user_input = self.request.META.get('HTTP_X_MXIT_USER_INPUT', '').strip()
