@@ -2,7 +2,7 @@ from dateutil.parser import parse
 
 from pydiscourse.client import DiscourseClient as BaseDiscourseClient
 
-from fh.settings import SPEAKUP_DISCOURSE_URL, SPEAKUP_DISCOURSE_USERNAME, SPEAKUP_DISCOURSE_API_KEY
+from fh.settings import SPEAKUP_DISCOURSE_URL, SPEAKUP_DISCOURSE_API_KEY
 
 
 class DiscourseClient(BaseDiscourseClient):
@@ -19,7 +19,7 @@ class DiscourseClient(BaseDiscourseClient):
 
 
 # discourse client
-def discourse_client(anonymous=False):
+def discourse_client(anonymous=False, username=None):
     """
     If `anonymous` is True, then return a client that
     doesn't authenticate with the server. This helps prevent
@@ -30,7 +30,7 @@ def discourse_client(anonymous=False):
         api_username = None
         api_key = None
     else:
-        api_username = SPEAKUP_DISCOURSE_USERNAME
+        api_username = username or 'system'
         api_key = SPEAKUP_DISCOURSE_API_KEY
 
     return DiscourseClient(SPEAKUP_DISCOURSE_URL, api_username, api_key)

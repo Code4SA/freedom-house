@@ -204,7 +204,6 @@ TEMPLATE_DIRS = (
 # Speak Up Mzansi
 
 SPEAKUP_DISCOURSE_URL = 'http://speakupmzansi.org.za'
-SPEAKUP_DISCOURSE_USERNAME = env.get('DISCOURSE_USERNAME')
 SPEAKUP_DISCOURSE_API_KEY = env.get('DISCOURSE_API_KEY')
 
 SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site

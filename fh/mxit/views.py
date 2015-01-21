@@ -124,8 +124,13 @@ class TopicView(TemplateView):
         if len(user_input) < 20:
             self.context['flash'] = 'Please type at least 20 characters in your reply.'
         else:
-            # TODO: post the reply
-            pass
+            try:
+                resp = discourse_client(username=user['username']).create_post(reply, topic_id=self.topic_id)
+                log.info('Posted reply: %s' % resp)
+            except DiscourseClientError as e:
+                log.info('Discourse rejected the reply: %s' % e.message, exc_info=e)
+                self.context['flash'] = e.message
+
 
         # TODO: do a redirect?
         return self.show_topic()
