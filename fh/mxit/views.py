@@ -28,9 +28,8 @@ class OAuthView(View):
                                                         request.GET.get('error_description')))
 
         elif code:
-            # authorized, get the auth token from mxit
-            auth_code = self.request.GET.get('code')
-            self.create_mxit_user(auth_code)
+            # authorized, create the mxit user
+            self.create_mxit_user(code)
 
         url = self.request.session.get('after-oauth', '/')
         return redirect(url)
