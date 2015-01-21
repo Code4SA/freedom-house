@@ -48,7 +48,7 @@ class OAuthView(View):
         name = '%s %s' % (profile.get('FirstName', ''), profile.get('LastName', ''))
 
         remote_ip = self.request.META['REMOTE_ADDR']
-        remote_ip = self.request.get('HTTP_X_FORWARDED_FOR', remote_ip).split(',')[0].strip()
+        remote_ip = self.request.META.get('HTTP_X_FORWARDED_FOR', remote_ip).split(',')[0].strip()
 
         log.info("Creating MXIT user: %s" % profile)
 
