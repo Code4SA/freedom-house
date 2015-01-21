@@ -46,6 +46,9 @@ class OAuthView(View):
         profile = mxit_client().users.get_full_profile(mxit_id, self.auth_token)
         name = '%s %s' % (profile.get('FirstName', ''), profile.get('LastName', ''))
 
+        remote_ip = self.request.META['REMOTE_ADDR']
+        remote_ip = self.request.get('HTTP_X_FORWARDED_FOR', remote_ip).split(',')[0].strip()
+
         log.info("Creating MXIT user: %s" % profile)
 
         # create the discourse user linked to this mxit id
@@ -54,7 +57,7 @@ class OAuthView(View):
                 email=profile['Email'],
                 username=profile['DisplayName'],
                 mxit_id=mxit_id,
-                remote_ip=self.request.META['REMOTE_ADDR'])
+                remote_ip=remote_ip)
         log.info("Created MXIT user: %s" % res)
 
 
