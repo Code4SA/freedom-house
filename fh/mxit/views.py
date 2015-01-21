@@ -29,21 +29,23 @@ class OAuthView(View):
 
         elif code:
             # authorized, get the auth token from mxit
-            code = self.request.GET.get('code')
-            self.auth_token = mxit_client().oauth.get_user_token(MXIT_SCOPE, code)
-            self.create_mxit_user()
+            auth_code = self.request.GET.get('code')
+            self.create_mxit_user(auth_code)
 
         url = self.request.session.get('after-oauth', '/')
         return redirect(url)
 
-    def create_mxit_user(self):
+    def create_mxit_user(self, auth_code):
         mxit_id = self.request.META.get('HTTP_X_MXIT_USERID_R')
         if not mxit_id:
             log.warn("No MXIT_USERID_R header, not authenticating.")
             return
 
+        mxit = mxit_client()
+        mxit.oauth.get_user_token(MXIT_SCOPE, auth_code)
+
         # get the full profile from mxit
-        profile = mxit_client().users.get_full_profile(mxit_id, self.auth_token)
+        profile = mxit.users.get_full_profile(mxit_id)
         name = '%s %s' % (profile.get('FirstName', ''), profile.get('LastName', ''))
 
         remote_ip = self.request.META['REMOTE_ADDR']
