@@ -45,7 +45,7 @@ ROOT_URLCONF = 'fh.urls'
 
 # we server multiple websites based on domain
 ROOT_HOSTCONF = 'fh.hosts'
-DEFAULT_HOST = 'mxit'
+DEFAULT_HOST = 'www'
 
 WSGI_APPLICATION = 'fh.wsgi.application'
 
