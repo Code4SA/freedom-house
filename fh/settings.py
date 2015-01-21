@@ -291,6 +291,6 @@ LOGGING = {
         'fh': {
             'handlers': ['console'],
             'level': 'INFO',
-        }
+        },
     }
 }

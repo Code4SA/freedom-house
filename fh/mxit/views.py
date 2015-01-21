@@ -44,7 +44,7 @@ class OAuthView(View):
         mxit.oauth.get_user_token(MXIT_SCOPE, auth_code)
 
         # get the full profile from mxit
-        profile = mxit.users.get_full_profile(mxit_id)
+        profile = mxit.users.get_full_profile()
         name = '%s %s' % (profile.get('FirstName', ''), profile.get('LastName', ''))
 
         remote_ip = self.request.META['REMOTE_ADDR']
