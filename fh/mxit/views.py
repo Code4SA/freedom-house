@@ -28,7 +28,14 @@ class MXitView(TemplateView):
         log.info("MXit discourse username: %s" % self.discourse_username)
         log.info("MXit headers: %s" % self.request.META)
 
-        return super(MXitView, self).dispatch(*args, **kwargs)
+        # after oauth, pretend that the last page the user viewed was
+        # the page they're going to go back to
+        last_path = self.request.session.get('after-oauth', self.request.path)
+
+        try:
+            return super(MXitView, self).dispatch(*args, **kwargs)
+        finally:
+            self.request.session['last-path'] = last_path
 
 
     def login_mxit_user(self):
@@ -137,7 +144,16 @@ class TopicView(MXitView):
         except KeyError:
             user_input = urllib.unquote_plus(self.request.META.get('HTTP_X_MXIT_USER_INPUT', '')).strip()
 
-        if user_input:
+        # mxit can send user input totally randomly. So ensure
+        # that the last page they looked at is this topic, before
+        # allowing a reply
+        try:
+            replies_allowed = request.path == request.session.pop('last-path')
+        except KeyError:
+            replies_allowed = False
+
+        # should we care about user input?
+        if replies_allowed and user_input:
             return self.handle_user_reply(user_input)
 
         return self.show_topic()
