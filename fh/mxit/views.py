@@ -142,7 +142,7 @@ class TopicView(MXitView):
         try:
             user_input = request.session.pop('mxit-input-after-oauth')
         except KeyError:
-            user_input = urllib.unquote_plus(self.request.META.get('HTTP_X_MXIT_USER_INPUT', '')).strip()
+            user_input = self.request.META.get('HTTP_X_MXIT_USER_INPUT', '')
 
         # mxit can send user input totally randomly. So ensure
         # that the last page they looked at is this topic, before
@@ -154,6 +154,7 @@ class TopicView(MXitView):
 
         # should we care about user input?
         if replies_allowed and user_input:
+            user_input = urllib.unquote_plus(user_input).strip()
             return self.handle_user_reply(user_input)
 
         return self.show_topic()
