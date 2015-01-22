@@ -8,5 +8,9 @@
     {% endif %}
 
     {% block content %}{% endblock %}
+
+    {% if flash %}
+    <h1 style="color: #ff0000">{{ flash }}</h1>
+    {% endif %}
   </body>
 </html>
