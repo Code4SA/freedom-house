@@ -96,7 +96,7 @@ class OAuthView(MXitView):
                 name=name,
                 email=profile['Email'],
                 username=profile['DisplayName'],
-                mxit_id=mxit_id,
+                mxit_id=self.mxit_id,
                 remote_ip=remote_ip,
                 cellphone_number=profile['MobileNumber'])
 
