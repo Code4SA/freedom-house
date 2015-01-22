@@ -126,7 +126,7 @@ class TopicView(TemplateView):
         # TODO: if we're checking they're too new, they need to browse around more
 
         # validate the quality of the post
-        if len(user_input) < 20:
+        if len(reply) < 20:
             self.context['flash'] = 'Please type at least 20 characters in your reply.'
         else:
             try:
