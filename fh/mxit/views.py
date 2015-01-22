@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from mxit import Mxit
 
 from fh.discourse import discourse_client, parse_timestamps
+from pydiscourse.exceptions import DiscourseClientError
 from fh.templatetags.mxit import discourse_url
 from fh.settings import MXIT_CLIENT_ID, MXIT_SECRET
 
@@ -94,7 +95,7 @@ class TopicView(TemplateView):
         self.topic_id = topic_id
         self.context = {}
 
-        log.debug(self.request.META)
+        log.info(self.request.META)
 
         # is the user trying to post a reply?
         try:
