@@ -4,5 +4,9 @@
   </head>
   <body>
     {% block content %}{% endblock %}
+
+    {% for message in messages %}
+    <h1 style="color: #ff0000">{{ message }}</h1>
+    {% endfor %}
   </body>
 </html>

@@ -204,7 +204,6 @@ TEMPLATE_DIRS = (
 # Speak Up Mzansi
 
 SPEAKUP_DISCOURSE_URL = 'http://speakupmzansi.org.za'
-SPEAKUP_DISCOURSE_USERNAME = env.get('DISCOURSE_USERNAME')
 SPEAKUP_DISCOURSE_API_KEY = env.get('DISCOURSE_API_KEY')
 
 SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site
@@ -213,6 +212,11 @@ SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site
 # Google Analytics
 GOOGLE_ANALYTICS_TRACKING_ID = env.get('DJANGO_GOOGLE_ANALYTICS_TRACKING_ID')
 GOOGLE_ANALYTICS_DOMAIN = env.get('DJANGO_GOOGLE_ANALYTICS_DOMAIN')
+
+
+# MXit
+MXIT_CLIENT_ID = env.get('MXIT_CLIENT_ID')
+MXIT_SECRET = env.get('MXIT_SECRET')
 
 
 # asset pipeline
@@ -283,6 +287,10 @@ LOGGING = {
         'django': {
             'handlers': ['console'],
             'level': 'INFO',
-        }
+        },
+        'fh': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
     }
 }
