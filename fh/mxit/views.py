@@ -144,9 +144,8 @@ class TopicView(TemplateView):
                 log.info('Discourse rejected the reply: %s' % e.message, exc_info=e)
                 self.context['flash'] = e.message
 
-
-        # TODO: do a redirect?
-        return self.show_topic()
+        # do a redirect to prevent re-sending the user reply data
+        return redirect(self.request.path)
 
     def auth_and_create_mxit_user(self, mxit_id):
         # authorize with mxit
