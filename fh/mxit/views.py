@@ -3,6 +3,7 @@ import urllib
 from django.views.generic import View, TemplateView
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from mxit import Mxit
 
 from fh.discourse import discourse_client, parse_timestamps
@@ -157,6 +158,8 @@ class TopicView(MXitView):
         return self.render_to_response(self.context)
 
     def handle_user_reply(self, reply):
+        log.info("Reply: %s" % reply)
+
         # are they logged in?
         if not self.discourse_username:
             # go through the user creation flow
@@ -167,14 +170,14 @@ class TopicView(MXitView):
 
         # validate the quality of the post
         if len(reply) < 20:
-            self.context['flash'] = 'Please type at least 20 characters in your reply.'
+            messages.error(self.request, 'Please type at least 20 characters in your reply.')
         else:
             try:
                 resp = self.discourse_client().create_post(reply, topic_id=self.topic_id)
                 log.info('Posted reply: %s' % resp)
             except DiscourseClientError as e:
                 log.info('Discourse rejected the reply: %s' % e.message, exc_info=e)
-                self.context['flash'] = e.message
+                messages.error(self.request, e.message)
 
         # do a redirect to prevent re-sending the user reply data
         return redirect(self.request.path)
