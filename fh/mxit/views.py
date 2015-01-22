@@ -1,3 +1,5 @@
+import urllib
+
 from django.views.generic import View, TemplateView
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -101,7 +103,7 @@ class TopicView(TemplateView):
         try:
             user_input = request.session.pop('mxit-input-after-oauth')
         except KeyError:
-            user_input = self.request.META.get('HTTP_X_MXIT_USER_INPUT', '').strip()
+            user_input = urllib.unquote_plus(self.request.META.get('HTTP_X_MXIT_USER_INPUT', '')).strip()
 
         if user_input:
             return self.handle_user_reply(user_input)
