@@ -31,7 +31,11 @@ class OAuthView(View):
             # authorized, create the mxit user
             self.create_mxit_user(code)
 
-        url = self.request.session.get('after-oauth', '/')
+        try:
+            url = self.request.session.pop('after-oauth')
+        except KeyError:
+            url = '/'
+
         return redirect(url)
 
     def create_mxit_user(self, auth_code):
@@ -93,7 +97,11 @@ class TopicView(TemplateView):
         log.debug(self.request.META)
 
         # is the user trying to post a reply?
-        user_input = self.request.META.get('HTTP_X_MXIT_USER_INPUT', '').strip()
+        try:
+            user_input = request.session.pop('mxit-input-after-oauth')
+        except KeyError:
+            user_input = self.request.META.get('HTTP_X_MXIT_USER_INPUT', '').strip()
+
         if user_input:
             return self.handle_user_reply(user_input)
 
@@ -143,7 +151,7 @@ class TopicView(TemplateView):
     def auth_and_create_mxit_user(self, mxit_id):
         # authorize with mxit
         self.request.session['after-oauth'] = self.request.path
-        self.request.session['mxit-input'] = self.request.META.get('HTTP_X_MXIT_USER_INPUT')
+        self.request.session['mxit-input-after-oauth'] = self.request.META.get('HTTP_X_MXIT_USER_INPUT')
         return redirect(mxit_client().oauth.auth_url(MXIT_SCOPE))
 
 
