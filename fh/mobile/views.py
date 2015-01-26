@@ -1,14 +1,16 @@
 import urllib
+import logging
 
 from django.views.generic import View, TemplateView
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib import messages
 
-from fh.discourse import discourse_client, parse_timestamps
 from pydiscourse.exceptions import DiscourseClientError
 
-import logging
+from fh.mobile.forms import LoginForm
+from fh.discourse import discourse_client, parse_timestamps
+
 log = logging.getLogger(__name__)
 
 class BaseMobileView(TemplateView):
@@ -78,3 +80,28 @@ class TopicView(BaseMobileView):
         cats = self.discourse_client().topic('', topic_id)
         parse_timestamps(cats)
         return cats
+
+class UserLoginView(BaseMobileView):
+    template_name = 'mobile/user/login.html'
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            # authenticated
+            request.session['discourse_username'] = form.discourse_username
+            messages.info(request, 'Welcome back, %s' % form.discourse_username)
+            print form.cleaned_data
+            return redirect(form.cleaned_data['next'] or '/')
+
+        return self.render_to_response({'form': form})
+
+
+    def get(self, request):
+        if request.session.get('discourse_username'):
+            return redirect(request.GET.get('next', '/'))
+
+        form = LoginForm()
+        form.initial['next'] = request.GET.get('next', '/')
+
+        return self.render_to_response({'form': form})
