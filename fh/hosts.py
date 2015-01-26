@@ -4,4 +4,5 @@ from django_hosts import patterns, host
 host_patterns = patterns('',
     host(r'www', settings.ROOT_URLCONF, name='www'),
     host(r'mxit', 'fh.mxit.urls', name='mxit'),
+    host(r'm', 'fh.mobile.urls', name='m'),
 )

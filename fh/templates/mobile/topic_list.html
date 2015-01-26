@@ -1,0 +1,19 @@
+{% extends 'mobile/_base.html' %}
+{% load humanize mxit %}
+
+{% block content %}
+<h1>Latest Speak Up Mzansi Discussions</h1>
+
+{% for category in categories %}
+  {% if category.topics %}
+    <h2>{{ category.name }} ({{ category.topic_count }})</h2>
+
+    {% for topic in category.topics %}
+      <a href="/t/{{ topic.id }}">{{ topic.title }}</a>
+      - {{ topic.last_posted_at|short_time_ago }}
+      <br>
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% endblock %}

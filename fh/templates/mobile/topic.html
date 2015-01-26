@@ -1,0 +1,27 @@
+{% extends 'mobile/_base.html' %}
+{% load humanize mxit %}
+
+{% block content %}
+
+<p><a href="/">&lt; Back to latest discussions</a></p>
+
+<h1>{{ topic.title }}</h1>
+
+<ul class="post-list">
+  {% for post in posts %}
+    <li class="post">
+      <b class="post-username">{{ post.username }}</b> <span class="post-timestamp">({{ post.created_at|short_time_ago }} ago)</span>:
+      <div class="post-body">{{ post.cooked|safe }}</div>
+    </li>
+  {% endfor %}
+</ul>
+
+<h2>What do you think?</h2>
+
+<form class="reply-form" action="{% url "m-topic" topic.id %}" method="POST">
+  {% csrf_token %}
+  <textarea name="text" placeholder="Type your reply here."></textarea>
+  <input class="btn btn-submit" type="submit" value="Reply">
+</form>
+
+{% endblock %}
