@@ -17,14 +17,16 @@ def short_time_ago(value):
     return value\
         .replace('years', 'w')\
         .replace('year', 'y')\
+        .replace('months', 'm')\
+        .replace('month', 'm')\
         .replace('weeks', 'w')\
         .replace('week', 'w')\
         .replace('days', 'd')\
         .replace('day', 'd')\
         .replace('hours', 'h')\
         .replace('hour', 'h')\
-        .replace('minutes', 'm')\
-        .replace('minute', 'm')\
+        .replace('minutes', 'min')\
+        .replace('minute', 'min')\
         .replace('seconds', 's')\
         .replace('second', 's')\
         .strip()
