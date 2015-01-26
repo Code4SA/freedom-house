@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     'django.contrib.humanize',
+     'django_extensions',
 
     # store stuff in s3
     'storages',
