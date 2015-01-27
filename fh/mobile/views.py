@@ -5,6 +5,7 @@ from django.views.generic import View, TemplateView
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib import messages
+from django.core.urlresolvers import reverse
 
 from pydiscourse.exceptions import DiscourseClientError
 
@@ -17,6 +18,10 @@ class BaseMobileView(TemplateView):
     def dispatch(self, *args, **kwargs):
         self.discourse_username = self.request.session.get('discourse_username')
         return super(BaseMobileView, self).dispatch(*args, **kwargs)
+
+    def login_url(self):
+        # TODO: seriously? there's got to be a better to build urls
+        return reverse('m-login') + '?' + urllib.urlencode({'next': self.request.path})
 
     def discourse_client(self, username=None):
         # get a discourse client impersonating this user, or
@@ -48,9 +53,9 @@ class TopicView(BaseMobileView):
     template_name = 'mobile/topic.html'
 
     def post(self, request, topic_id):
-        # TODO: handle reply
+        if not self.discourse_username:
+            return redirect(self.login_url())
 
-        # TODO: authenticate user
         reply = request.POST.get('text', '')
 
         try:
@@ -85,20 +90,22 @@ class UserLoginView(BaseMobileView):
     template_name = 'mobile/user/login.html'
 
     def post(self, request):
+        if self.discourse_username:
+            return redirect(request.GET.get('next', '/'))
+
         form = LoginForm(request.POST)
 
         if form.is_valid():
             # authenticated
             request.session['discourse_username'] = form.discourse_username
             messages.info(request, 'Welcome back, %s' % form.discourse_username)
-            print form.cleaned_data
             return redirect(form.cleaned_data['next'] or '/')
 
         return self.render_to_response({'form': form})
 
 
     def get(self, request):
-        if request.session.get('discourse_username'):
+        if self.discourse_username:
             return redirect(request.GET.get('next', '/'))
 
         form = LoginForm()

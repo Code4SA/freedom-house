@@ -18,10 +18,14 @@
 
 <h2>What do you think?</h2>
 
+{% if is_logged_in %}
 <form class="reply-form" action="{% url "m-topic" topic.id %}" method="POST">
   {% csrf_token %}
   <textarea name="text" placeholder="Type your reply here."></textarea>
   <input class="btn btn-submit" type="submit" value="Reply">
 </form>
+{% else %}
+<a href="{{ login_path }}">Login to reply</a>
+{% endif %}
 
 {% endblock %}
