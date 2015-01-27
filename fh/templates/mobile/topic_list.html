@@ -1,7 +1,10 @@
 {% extends 'mobile/_base.html' %}
 {% load humanize mxit %}
 
+{% block title %} Latest discussions {% endblock %}
+
 {% block content %}
+
 <h1>Latest Speak Up Mzansi Discussions</h1>
 
 {% for category in categories %}
