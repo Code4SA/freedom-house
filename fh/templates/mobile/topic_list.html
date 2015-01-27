@@ -5,18 +5,20 @@
 
 {% block content %}
 
-<h1>Latest Speak Up Mzansi Discussions</h1>
+<div data-bb-type="title" data-bb-caption="Speak Up Mzansi" data-bb-back-caption="Back" ></div>
 
-{% for category in categories %}
-  {% if category.topics %}
-    <h2>{{ category.name }} ({{ category.topic_count }})</h2>
+<div data-bb-type="image-list" data-bb-images="none" data-bb-style="arrowlist">
+  {% for category in categories %}
+    {% if category.topics %}
+    <div data-bb-type="header">{{ category.name }} ({{ category.topics|length }})</div>
 
-    {% for topic in category.topics %}
-      <a href="/t/{{ topic.id }}">{{ topic.title }}</a>
-      - {{ topic.last_posted_at|short_time_ago }}
-      <br>
-    {% endfor %}
-  {% endif %}
-{% endfor %}
+      {% for topic in category.topics %}
+      <div data-bb-type="item" data-bb-title="{{ topic.title }}" onclick="window.location='/t/{{ topic.id }}';">
+        {{ topic.last_posted_at|timesince }} ago
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</div>
 
 {% endblock %}

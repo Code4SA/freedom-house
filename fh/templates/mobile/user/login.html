@@ -5,30 +5,38 @@
 
 {% block content %}
 
-<h2>Log In</h2>
+<div data-bb-type="title" data-bb-caption="Log In" data-bb-back-caption="Back" ></div>
 
-<form class="login-form" action="{% url "m-login" %}" method="POST">
-  {{ form.non_field_errors }}
+<div><a href="/">&lt; Back</a></div>
 
-  {% for hidden in form.hidden_fields %}
-  {{ hidden }}
-  {% endfor %}
+<div data-bb-type="round-panel"> 
+  <div data-bb-type="panel-header">Log In</div>
+  <form class="login-form" action="{% url "m-login" %}" method="POST">
+    {{ form.non_field_errors }}
 
-  {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
 
-  <div>
-  {{ form.username.errors }}
-  {{ form.username.label_tag }}
-  {{ form.username }}
-  </div>
+    {% csrf_token %}
 
-  <div>
-  {{ form.password.errors }}
-  {{ form.password.label_tag }}
-  {{ form.password }}
-  </div>
+    <div>
+    {{ form.username.errors }}
+    {{ form.username.label_tag }}
+    {{ form.username }}
+    </div>
 
-  <input class="btn btn-submit" type="submit" value="Login">
-</form>
+    <div>
+    {{ form.password.errors }}
+    {{ form.password.label_tag }}
+    {{ form.password }}
+    </div>
+
+    <input class="btn btn-submit" type="submit" value="Login">
+  </form>
+
+  <a href="{% url 'm-new-user' %}">Sign Up</a>
+</div>
+
 
 {% endblock %}

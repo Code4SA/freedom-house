@@ -5,45 +5,54 @@
 
 {% block content %}
 
-<h2>Sign Up</h2>
+<div data-bb-type="title" data-bb-caption="Sign Up" data-bb-back-caption="Back" ></div>
 
-<form class="new-user-form" action="{% url "m-new-user" %}" method="POST">
-  {{ form.non_field_errors }}
+<div><a href="/">&lt; Back</a></div>
 
-  {% for hidden in form.hidden_fields %}
-  {{ hidden }}
-  {% endfor %}
+<div data-bb-type="round-panel"> 
+  <div data-bb-type="panel-header">Sign Up</div>
 
-  {% csrf_token %}
+  <form class="new-user-form" action="{% url "m-new-user" %}" method="POST">
+    {{ form.non_field_errors }}
 
-  <div>
-  {{ form.email.errors }}
-  {{ form.email.label_tag }}
-  {{ form.email }}
-  {{ form.email.help_text }}
-  </div>
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
 
-  <div>
-  {{ form.username.errors }}
-  {{ form.username.label_tag }}
-  {{ form.username }}
-  </div>
+    {% csrf_token %}
 
-  <div>
-  {{ form.name.errors }}
-  {{ form.name.label_tag }}
-  {{ form.name }}
-  </div>
+    <div>
+    {{ form.email.errors }}
+    {{ form.email.label_tag }}
+    {{ form.email.help_text }}
+    {{ form.email }}
+    </div>
 
-  <div>
-  {{ form.password.errors }}
-  {{ form.password.label_tag }}
-  {{ form.password }}
-  </div>
+    <div>
+    {{ form.username.errors }}
+    {{ form.username.label_tag }}
+    {{ form.username.help_text }}
+    {{ form.username }}
+    </div>
 
-  <input class="btn btn-submit" type="submit" value="Create New Account">
-</form>
+    <div>
+    {{ form.name.errors }}
+    {{ form.name.label_tag }}
+    {{ form.name.help_text }}
+    {{ form.name }}
+    </div>
 
-<a href="{% url 'm-login' %}">Log In</a>
+    <div>
+    {{ form.password.errors }}
+    {{ form.password.label_tag }}
+    {{ form.password.help_text }}
+    {{ form.password }}
+    </div>
+
+    <input class="btn btn-submit" type="submit" value="Create New Account">
+  </form>
+
+  <a href="{% url 'm-login' %}">Log In</a>
+</div>
 
 {% endblock %}
