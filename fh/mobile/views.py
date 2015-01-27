@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 
 from pydiscourse.exceptions import DiscourseClientError
 
-from fh.mobile.forms import LoginForm
+from fh.mobile.forms import LoginForm, SignupForm
 from fh.discourse import discourse_client, parse_timestamps
 
 log = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ class BaseMobileView(TemplateView):
         return super(BaseMobileView, self).dispatch(*args, **kwargs)
 
     def login_url(self):
-        # TODO: seriously? there's got to be a better to build urls
+        # TODO: seriously? there's got to be a better way to build urls
         return reverse('m-login') + '?' + urllib.urlencode({'next': self.request.path})
 
     def discourse_client(self, username=None):
@@ -86,6 +86,7 @@ class TopicView(BaseMobileView):
         parse_timestamps(cats)
         return cats
 
+
 class UserLoginView(BaseMobileView):
     template_name = 'mobile/user/login.html'
 
@@ -98,7 +99,7 @@ class UserLoginView(BaseMobileView):
         if form.is_valid():
             # authenticated
             request.session['discourse_username'] = form.discourse_username
-            messages.info(request, 'Welcome back, %s' % form.discourse_username)
+            messages.info(request, 'Welcome back %s' % form.discourse_username)
             return redirect(form.cleaned_data['next'] or '/')
 
         return self.render_to_response({'form': form})
@@ -109,6 +110,34 @@ class UserLoginView(BaseMobileView):
             return redirect(request.GET.get('next', '/'))
 
         form = LoginForm()
+        form.initial['next'] = request.GET.get('next', '/')
+
+        return self.render_to_response({'form': form})
+
+
+class UserSignupView(BaseMobileView):
+    template_name = 'mobile/user/new.html'
+
+    def post(self, request):
+        if self.discourse_username:
+            return redirect(request.GET.get('next', '/'))
+
+        form = SignupForm(request.POST)
+
+        if form.is_valid():
+            # created user
+            request.session['discourse_username'] = form.discourse_username
+            messages.info(request, 'Welcome %s' % form.discourse_username)
+            return redirect(form.cleaned_data['next'] or '/')
+
+        return self.render_to_response({'form': form})
+
+
+    def get(self, request):
+        if self.discourse_username:
+            return redirect(request.GET.get('next', '/'))
+
+        form = SignupForm()
         form.initial['next'] = request.GET.get('next', '/')
 
         return self.render_to_response({'form': form})

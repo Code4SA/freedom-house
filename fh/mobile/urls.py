@@ -7,27 +7,23 @@ urlpatterns = patterns('',
     url(
         regex   = '^$',
         view    = views.TopicListView.as_view(),
-        kwargs  = {},
         name    = 'm-topics',
     ),
     url(
         regex   = '^t/(?P<topic_id>[0-9]+)$',
         view    = views.TopicView.as_view(),
-        kwargs  = {},
         name    = 'm-topic',
     ),
 
     # user management
-    #url(
-    #    regex   = '^user/new$',
-    #    view    = views.UserSignupView.as_view(),
-    #    kwargs  = {},
-    #    name    = 'm-new-user',
-    #),
+    url(
+        regex   = '^user/new$',
+        view    = views.UserSignupView.as_view(),
+        name    = 'm-new-user',
+    ),
     url(
         regex   = '^user/login$',
         view    = views.UserLoginView.as_view(),
-        kwargs  = {},
         name    = 'm-login',
     ),
     #url(
