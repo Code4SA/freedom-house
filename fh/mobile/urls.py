@@ -3,6 +3,8 @@ from django.conf import settings
 
 import fh.mobile.views as views
 
+handler404 = views.error404
+
 urlpatterns = patterns('',
     url(
         regex   = '^$',
