@@ -22,6 +22,12 @@ class DiscourseClient(BaseDiscourseClient):
             raise DiscourseClientError(resp['error'])
         return resp['user']
 
+    def forgot_password(self, login):
+        """ Trigger a password reset email. Returns true if the user was found, false
+        otherwise. """
+        return self._post('/session/forgot_password', login=login)['user_found']
+
+
 
 # discourse client
 def discourse_client(anonymous=False, username=None):

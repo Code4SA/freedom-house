@@ -56,3 +56,7 @@ class SignupForm(forms.Form):
                 raise ValidationError(e.message)
 
         return self.cleaned_data
+
+
+class ForgotPasswordForm(forms.Form):
+    login = forms.CharField(label='Email or username', max_length=100)

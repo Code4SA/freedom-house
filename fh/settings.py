@@ -195,6 +195,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'cms.context_processors.cms_settings',
     'lib.context_processors.google_analytics',
     'lib.context_processors.speakup',
+    'lib.context_processors.mobile',
 )
 
 TEMPLATE_DIRS = (

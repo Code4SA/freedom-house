@@ -28,11 +28,15 @@ urlpatterns = patterns('',
         view    = views.UserLoginView.as_view(),
         name    = 'm-login',
     ),
-    #url(
-    #    regex   = '^user/logout$',
-    #    view    = views.UserLoginView.as_view(),
-    #    kwargs  = {},
-    #    name    = 'm-topic',
-    #),
-    #url('^auth/callback$', OAuthView.as_view()),
+    url(
+        regex   = '^user/forgot$',
+        view    = views.ForgotPasswordView.as_view(),
+        name    = 'm-forgot',
+    ),
+    url(
+        regex   = '^user/logout$',
+        view    = views.user_logout,
+        kwargs  = {},
+        name    = 'm-logout',
+    ),
 )

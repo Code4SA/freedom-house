@@ -38,6 +38,11 @@
           <a href="http://info.speakupmzansi.org.za/election-promises/">Election Promises</a><br>
           <a href="xhttp://info.speakupmzansi.org.za/political-party-information/">Political Party Promises</a>
         </div>
+
+        {% if is_logged_in %}
+        <p><a href="/user/logout">Logout</a></p>
+        {% endif %}
+
         <p><a href="http://speakupmzansi.org.za/?nomobile=1">View desktop site</a></p>
       </footer>
       {% endblock %}

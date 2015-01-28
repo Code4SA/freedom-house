@@ -1,0 +1,32 @@
+{% extends 'mobile/_base.html' %}
+
+{% block title %}Forgotten Password{% endblock %}
+
+{% block content %}
+
+<div data-bb-type="title" data-bb-caption="Forgot Your Password?"><h1>Forgot Your Password?</h1></div>
+<div><a href="/">&lt; Back</a></div>
+
+<div data-bb-type="round-panel"> 
+  <div data-bb-type="panel-header">Forgot Your Password?</div>
+  <form class="login-form" action="{% url "m-forgot" %}" method="POST">
+    {{ form.non_field_errors }}
+
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    {% csrf_token %}
+
+    {{ form.login.label_tag }}
+    {{ form.login.errors }}
+    {{ form.login }}
+
+    <input class="btn btn-submit" type="submit" value="Reset Password">
+  </form>
+
+  <a href="{% url 'm-login' %}">Login</a>
+</div>
+
+
+{% endblock %}

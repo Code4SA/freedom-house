@@ -20,20 +20,21 @@
     {% csrf_token %}
 
     <div>
-    {{ form.username.errors }}
     {{ form.username.label_tag }}
+    {{ form.username.errors }}
     {{ form.username }}
     </div>
 
     <div>
-    {{ form.password.errors }}
     {{ form.password.label_tag }}
+    {{ form.password.errors }}
     {{ form.password }}
     </div>
 
     <input class="btn btn-submit" type="submit" value="Login">
   </form>
 
+  <a href="{% url 'm-forgot' %}">Forgot Password</a><br>
   <a href="{% url 'm-new-user' %}">Sign Up</a>
 </div>
 
