@@ -7,6 +7,10 @@ from fh.settings import SPEAKUP_DISCOURSE_URL
 
 register = template.Library()
 
+@register.filter(name='avatar_url')
+def avatar_url(url_template, size=20):
+    return SPEAKUP_DISCOURSE_URL + url_template.replace('{size}', str(size))
+
 @register.filter(name='short_time_ago')
 def short_time_ago(value):
     if not isinstance(value, date): # datetime is a subclass of date

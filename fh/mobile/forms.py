@@ -15,15 +15,16 @@ class LoginForm(forms.Form):
 
     def clean(self):
         """ authenticate user """
-        # call discourse
-        discourse = discourse_client()
-        try:
-            user = discourse.authenticate_user(login=self.cleaned_data['username'],
-                                               password=self.cleaned_data['password'])
-            log.info("Authenticated as: %s" % user)
-            self.discourse_username = user['username']
-        except DiscourseClientError as e:
-            raise ValidationError(e.message)
+        if not self._errors:
+            # call discourse
+            discourse = discourse_client()
+            try:
+                user = discourse.authenticate_user(login=self.cleaned_data['username'],
+                                                   password=self.cleaned_data['password'])
+                log.info("Authenticated as: %s" % user)
+                self.discourse_username = user['username']
+            except DiscourseClientError as e:
+                raise ValidationError(e.message)
 
         return self.cleaned_data
 
@@ -38,19 +39,20 @@ class SignupForm(forms.Form):
 
     def clean(self):
         """ create user """
-        # call discourse
-        discourse = discourse_client()
-        try:
-            user = discourse.create_user(
-                name=self.cleaned_data['name'],
-                username=self.cleaned_data['username'],
-                email=self.cleaned_data['email'],
-                password=self.cleaned_data['password'],
-                active=True)
+        if not self._errors:
+            # call discourse
+            discourse = discourse_client()
+            try:
+                user = discourse.create_user(
+                    name=self.cleaned_data['name'],
+                    username=self.cleaned_data['username'],
+                    email=self.cleaned_data['email'],
+                    password=self.cleaned_data['password'],
+                    active=True)
 
-            log.info("Created user: %s" % user)
-            self.discourse_username = self.cleaned_data['username']
-        except DiscourseError as e:
-            raise ValidationError(e.message)
+                log.info("Created user: %s" % user)
+                self.discourse_username = self.cleaned_data['username']
+            except DiscourseError as e:
+                raise ValidationError(e.message)
 
         return self.cleaned_data

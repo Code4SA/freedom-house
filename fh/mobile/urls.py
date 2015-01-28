@@ -3,6 +3,8 @@ from django.conf import settings
 
 import fh.mobile.views as views
 
+handler404 = views.error404
+
 urlpatterns = patterns('',
     url(
         regex   = '^$',
@@ -10,7 +12,7 @@ urlpatterns = patterns('',
         name    = 'm-topics',
     ),
     url(
-        regex   = '^t/(?P<topic_id>[0-9]+)$',
+        regex   = '^t/([^/]+/)?(?P<topic_id>[0-9]+)$',
         view    = views.TopicView.as_view(),
         name    = 'm-topic',
     ),

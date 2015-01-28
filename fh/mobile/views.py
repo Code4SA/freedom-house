@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.shortcuts import render
 
 from pydiscourse.exceptions import DiscourseClientError
 
@@ -13,6 +14,11 @@ from fh.mobile.forms import LoginForm, SignupForm
 from fh.discourse import discourse_client, parse_timestamps
 
 log = logging.getLogger(__name__)
+
+
+def error404(request):
+    return render(request, 'mobile/404.html')
+
 
 class BaseMobileView(TemplateView):
     def dispatch(self, *args, **kwargs):
