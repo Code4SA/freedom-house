@@ -1,0 +1,57 @@
+{% extends 'mobile/_base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+<div data-bb-type="title" data-bb-caption="Sign Up"><h1>Sign Up</h1></div>
+
+<div><a href="/">&lt; Back</a></div>
+
+<div data-bb-type="round-panel"> 
+  <div data-bb-type="panel-header">Sign Up</div>
+
+  <form class="new-user-form" action="{% url "m-new-user" %}" method="POST">
+    {{ form.non_field_errors }}
+
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    {% csrf_token %}
+
+    <div>
+    {{ form.email.errors }}
+    {{ form.email.label_tag }}
+    {{ form.email.help_text }}
+    {{ form.email }}
+    </div>
+
+    <div>
+    {{ form.username.errors }}
+    {{ form.username.label_tag }}
+    {{ form.username.help_text }}
+    {{ form.username }}
+    </div>
+
+    <div>
+    {{ form.name.errors }}
+    {{ form.name.label_tag }}
+    {{ form.name.help_text }}
+    {{ form.name }}
+    </div>
+
+    <div>
+    {{ form.password.errors }}
+    {{ form.password.label_tag }}
+    {{ form.password.help_text }}
+    {{ form.password }}
+    </div>
+
+    <input class="btn btn-submit" type="submit" value="Create New Account">
+  </form>
+
+  <a href="{% url 'm-login' %}">Log In</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'mobile/_base.html' %}
+{% load humanize mobile %}
+
+{% block title %}{{ topic.title }}{% endblock %}
+
+{% block content %}
+
+<div data-bb-type="title" data-bb-caption="{{ topic.title }}" data-bb-back-caption="Back" ></div>
+<div><a href="/">&lt; Back</a></div>
+
+{% for post in posts %}
+<div data-bb-type="bbm-bubble" data-bb-style="left">
+  <div data-bb-type="item" data-bb-img="{{ post.avatar_template|avatar_url }}">
+    <b class="post-username">{{ post.username }}</b> <span class="post-timestamp">({{ post.created_at|short_time_ago }} ago)</span>:
+    <div class="post-body">{{ post.cooked|safe }}</div>
+  </div>
+</div>
+{% endfor %}
+
+<div data-bb-type="round-panel"> 
+  <div data-bb-type="panel-header">What do you think?</div>
+
+  {% if is_logged_in %}
+  <form class="reply-form" action="{% url "m-topic" topic.id %}" method="POST">
+    {% csrf_token %}
+    <textarea name="text" placeholder="Type your reply here."></textarea>
+    <input data-bb-style="stretch" class="btn btn-submit" type="submit" value="Reply">
+  </form>
+  {% else %}
+
+  <div>
+    <a href="{{ login_url }}">Login to reply</a>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

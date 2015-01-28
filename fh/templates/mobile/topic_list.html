@@ -1,0 +1,31 @@
+{% extends 'mobile/_base.html' %}
+{% load humanize mobile %}
+
+{% block title %} Latest discussions {% endblock %}
+
+{% block content %}
+
+<div data-bb-type="title" data-bb-caption="Speak Up Mzansi"><h1>Speak Up Mzansi</h1></div>
+
+<div>
+  <a href="http://info.speakupmzansi.org.za/election-promises/">Election Promises</a><br>
+  <a href="xhttp://info.speakupmzansi.org.za/political-party-information/">Political Party Promises</a>
+</div>
+
+<div data-bb-type="image-list" data-bb-images="none" data-bb-style="arrowlist">
+
+  {% for category in categories %}
+    {% if category.topics %}
+      <div data-bb-type="header">{{ category.name }} ({{ category.topics|length }})</div>
+
+      {% for topic in category.topics %}
+      <div data-bb-type="item" data-bb-title="{{ topic.title }}" onclick="window.location='/t/{{ topic.id }}';">
+        <a class="bb-hidden" href="/t/{{ topic.id }}">{{ topic.title }}</a>
+        {{ topic.last_posted_at|timesince }} ago
+      </div>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,4 +1,7 @@
+import urllib
+
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 def google_analytics(request):
     """
@@ -21,4 +24,14 @@ def speakup(request):
     return {
         'SPEAKUP_DISCOURSE_URL': getattr(settings, 'SPEAKUP_DISCOURSE_URL', '/'),
         'SPEAKUP_INFO_URL': getattr(settings, 'SPEAKUP_INFO_URL', '/'),
+    }
+
+def mobile(request):
+    """
+    Add Mobile-related config to the context.
+    """
+    return {
+        'is_logged_in': request.session.get('discourse_username') is not None,
+        'discourse_username': request.session.get('discourse_username'),
+        'login_url': reverse('m-login') + '?' + urllib.urlencode({'next': request.path})
     }

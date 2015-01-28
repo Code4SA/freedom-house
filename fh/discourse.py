@@ -1,6 +1,7 @@
 from dateutil.parser import parse
 
 from pydiscourse.client import DiscourseClient as BaseDiscourseClient
+from pydiscourse.exceptions import DiscourseClientError
 
 from fh.settings import SPEAKUP_DISCOURSE_URL, SPEAKUP_DISCOURSE_API_KEY
 
@@ -15,7 +16,11 @@ class DiscourseClient(BaseDiscourseClient):
         return self._post('/mxit/users', name=name, username=username, email=email,
                 mxit_id=mxit_id, remote_ip=remote_ip, **kwargs)
 
-
+    def authenticate_user(self, login, password):
+        resp = self._post('/session', login=login, password=password)
+        if 'error' in resp:
+            raise DiscourseClientError(resp['error'])
+        return resp['user']
 
 
 # discourse client
