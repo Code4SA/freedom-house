@@ -165,7 +165,7 @@ class ForgotPasswordView(BaseMobileView):
 
         if form.is_valid():
             # send request
-            if self.discourse_client().forgot_password(form.cleaned_data['login']):
+            if self.discourse_client('system').forgot_password(form.cleaned_data['login']):
                 messages.info(request, "We've sent you an email with instructions on how to reset your password.")
                 return redirect('/')
             else:
