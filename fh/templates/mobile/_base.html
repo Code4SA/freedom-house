@@ -1,3 +1,5 @@
+{% load compress %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,7 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Building better conversations between citizens and their leaders.">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}/css/bbui.css">
+    {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bbui.css">
+    <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}less/mobile.less" charset="utf-8">
+    {% endcompress %}
 
     {% block head-css %}{% endblock %}
     {% block head-meta %}{% endblock %}
@@ -25,8 +30,15 @@
 
       {% block footer %}
       <hr>
+
       <footer class="footer">
-        <a href="http://speakupmzansi.org.za">View desktop site</a>
+        <img src="http://info.speakupmzansi.org.za/static/images/forums-logo.png">
+        <p>Building better conversations between citizens and their leaders.</p>
+        <div>
+          <a href="http://info.speakupmzansi.org.za/election-promises/">Election Promises</a><br>
+          <a href="xhttp://info.speakupmzansi.org.za/political-party-information/">Political Party Promises</a>
+        </div>
+        <p><a href="http://speakupmzansi.org.za">View desktop site</a></p>
       </footer>
       {% endblock %}
     </div>
@@ -34,10 +46,13 @@
     {% block javascript %}
 
     <script type="text/javascript" src="{{ STATIC_URL }}/js/bbui.js"></script>
-		<script type="text/javascript">
-				bb.init();
-        bb.initContainer(document.getElementById('wrapper'));
-		</script>
+    <script type="text/javascript">
+if (navigator.userAgent.indexOf('BlackBerry') >= 0) {
+  document.getElementById('wrapper').classList.add('is-bb');
+  bb.init();
+  bb.initContainer(document.getElementById('wrapper'));
+}
+    </script>
 
     {% if GOOGLE_ANALYTICS_TRACKING_ID and GOOGLE_ANALYTICS_DOMAIN %}
     <script>

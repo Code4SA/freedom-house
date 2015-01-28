@@ -1,5 +1,5 @@
 {% extends 'mobile/_base.html' %}
-{% load humanize mxit %}
+{% load humanize mxit mobile %}
 
 {% block title %}{{ topic.title }}{% endblock %}
 
@@ -10,7 +10,7 @@
 
 {% for post in posts %}
 <div data-bb-type="bbm-bubble" data-bb-style="left">
-  <div data-bb-type="item" data-bb-img="">
+  <div data-bb-type="item" data-bb-img="{{ post.avatar_template|avatar_url }}">
     <b class="post-username">{{ post.username }}</b> <span class="post-timestamp">({{ post.created_at|short_time_ago }} ago)</span>:
     <div class="post-body">{{ post.cooked|safe }}</div>
   </div>
