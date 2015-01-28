@@ -21,30 +21,30 @@
     {% csrf_token %}
 
     <div>
-    {{ form.email.errors }}
     {{ form.email.label_tag }}
     {{ form.email.help_text }}
+    {{ form.email.errors }}
     {{ form.email }}
     </div>
 
     <div>
-    {{ form.username.errors }}
     {{ form.username.label_tag }}
     {{ form.username.help_text }}
+    {{ form.username.errors }}
     {{ form.username }}
     </div>
 
     <div>
-    {{ form.name.errors }}
     {{ form.name.label_tag }}
     {{ form.name.help_text }}
+    {{ form.name.errors }}
     {{ form.name }}
     </div>
 
     <div>
-    {{ form.password.errors }}
     {{ form.password.label_tag }}
     {{ form.password.help_text }}
+    {{ form.password.errors }}
     {{ form.password }}
     </div>
 

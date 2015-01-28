@@ -10,7 +10,7 @@ from django.shortcuts import render
 
 from pydiscourse.exceptions import DiscourseClientError
 
-from fh.mobile.forms import LoginForm, SignupForm
+from fh.mobile.forms import LoginForm, SignupForm, ForgotPasswordForm
 from fh.discourse import discourse_client, parse_timestamps
 
 log = logging.getLogger(__name__)
@@ -120,6 +120,11 @@ class UserLoginView(BaseMobileView):
 
         return self.render_to_response({'form': form})
 
+def user_logout(request):
+    request.session.flush()
+    messages.info(request, "You've been logged out.")
+    return redirect('/')
+
 
 class UserSignupView(BaseMobileView):
     template_name = 'mobile/user/new.html'
@@ -146,4 +151,32 @@ class UserSignupView(BaseMobileView):
         form = SignupForm()
         form.initial['next'] = request.GET.get('next', '/')
 
+        return self.render_to_response({'form': form})
+
+
+class ForgotPasswordView(BaseMobileView):
+    template_name = 'mobile/user/forgot.html'
+
+    def post(self, request):
+        if self.discourse_username:
+            return redirect('/')
+
+        form = ForgotPasswordForm(request.POST)
+
+        if form.is_valid():
+            # send request
+            if self.discourse_client().forgot_password(form.cleaned_data['login']):
+                messages.info(request, "We've sent you an email with instructions on how to reset your password.")
+                return redirect('/')
+            else:
+                messages.info(request, "We couldn't find that username or email.")
+
+        return self.render_to_response({'form': form})
+
+
+    def get(self, request):
+        if self.discourse_username:
+            return redirect('/')
+
+        form = ForgotPasswordForm()
         return self.render_to_response({'form': form})
