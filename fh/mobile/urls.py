@@ -10,7 +10,7 @@ urlpatterns = patterns('',
         name    = 'm-topics',
     ),
     url(
-        regex   = '^t/(?P<topic_id>[0-9]+)$',
+        regex   = '^t/([^/]+/)?(?P<topic_id>[0-9]+)$',
         view    = views.TopicView.as_view(),
         name    = 'm-topic',
     ),
