@@ -33,5 +33,5 @@ def mobile(request):
     return {
         'is_logged_in': request.session.get('discourse_username') is not None,
         'discourse_username': request.session.get('discourse_username'),
-        'login_url': reverse('m-login') + '?' + urllib.urlencode({'next': request.path})
+        'login_url': '/user/login' + '?' + urllib.urlencode({'next': request.path})
     }
