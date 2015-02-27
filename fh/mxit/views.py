@@ -8,7 +8,7 @@ from mxit import Mxit
 
 from fh.discourse import discourse_client, parse_timestamps
 from pydiscourse.exceptions import DiscourseClientError
-from fh.templatetags.mxit import discourse_url
+from fh.templatetags.mobile import discourse_url
 from fh.settings import MXIT_CLIENT_ID, MXIT_SECRET
 
 import logging
