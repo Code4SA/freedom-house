@@ -30,6 +30,8 @@ djangocms-style==1.4
 djangocms-teaser==0.0.2
 djangocms-text-ckeditor==2.3.0
 djangocms-video==0.0.2
+gevent==1.0.1
+greenlet==0.4.5
 gunicorn==19.1.1
 html5lib==0.999
 mxit==0.3.8
