@@ -1,0 +1,10 @@
+{% extends "general.html" %}
+{% load cms_tags staticfiles sekizai_tags menu_tags %}
+
+{% block body %}
+<div id="councillor-iframe"></div>
+<script type="text/javascript" src="http://nearby.code4sa.org/static/javascript/pym.min.js"></script>
+<script>
+  new pym.Parent('councillor-iframe', 'http://nearby.code4sa.org/councillor/');
+</script>
+{% endblock body %}
