@@ -11,6 +11,9 @@
 {% endblock %}
 
 {% block head-meta %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Speak Up Mzansi">
+  {% block og-meta %}{% endblock %}
   <script type="text/javascript" src="/static/plugins/modernizr.min.js"></script>
 
   <!--[if lte IE 8]>
