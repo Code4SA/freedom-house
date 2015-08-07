@@ -1,6 +1,14 @@
 {% extends "general.html" %}
 {% load cms_tags staticfiles sekizai_tags menu_tags %}
 
+{% block title %}Ward councillors{% endblock %}
+
+{% block og-meta %}
+    <meta property="og:url" content="http://info.speakupmzansi.org.za/councillor/">
+    <meta property="og:title" content="Ward councillors - Speak Up Mzansi">
+    <meta property="og:description" content=" Your ward councillor is your representative in your municipality. Find your councillor and their contact details here.">
+{% endblock %}
+
 {% block body %}
 <div id="councillor-iframe"></div>
 
