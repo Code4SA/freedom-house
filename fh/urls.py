@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.generic.base import RedirectView
 from cms.sitemaps import CMSSitemap
+from django.views.generic.base import TemplateView
 
 admin.autodiscover()
 
@@ -15,6 +16,7 @@ urlpatterns = i18n_patterns('',
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': {'cmspages': CMSSitemap}}),
+    url(r'^councillor/', TemplateView.as_view(template_name='councillor.html'), name='councillor'),
     url(r'^', include('cms.urls')),
 )
 
