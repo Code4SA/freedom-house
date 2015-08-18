@@ -12,5 +12,11 @@
 {% block body %}
 <div id="councillor-iframe"></div>
 
+<script type="text/javascript">
+var CouncillorEmbedOptions = {
+  qs: window.location.search,
+  shareUrl: 'http://info.speakupmzansi.org.za/councillor/'
+};
+</script>
 <script type="text/javascript" src="http://nearby.code4sa.org/static/councillor-embed.js"></script>
 {% endblock body %}
