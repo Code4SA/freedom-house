@@ -1,4 +1,4 @@
-{% load compress %}
+{% load compress static %}
 
 <!DOCTYPE html>
 <html>
@@ -8,8 +8,8 @@
 
     <meta name="description" content="Building better conversations between citizens and their leaders.">
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bbui.css">
-    <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}less/mobile.less" charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="{% static 'stylesheets/bbui.css' %}">
+    <link type="text/less" rel="stylesheet" href="{% static 'stylesheets/mobile.less' %}" charset="utf-8">
     {% endcompress %}
 
     {% block head-css %}{% endblock %}
