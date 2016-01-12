@@ -13,6 +13,7 @@ urlpatterns = i18n_patterns('',
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': {'cmspages': CMSSitemap}}),
     url(r'^councillor/', TemplateView.as_view(template_name='councillor.html'), name='councillor'),
+
     url(r'^', include('cms.urls')),
 )
 

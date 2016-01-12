@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 import os
-import sys
 from os import environ as env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -90,7 +89,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     'django.contrib.humanize',
-     'django_extensions',
+    'pipeline',
+    'django_extensions',
 
     # store stuff in s3
     'storages',
@@ -102,9 +102,6 @@ INSTALLED_APPS = (
     'south',
     'sekizai',
     'reversion',
-
-    # Asset pipeline
-    'compressor',
 
     # cms plugins
     'djangocms_style',
@@ -142,7 +139,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -152,11 +148,43 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    "pipeline.finders.PipelineFinder",
 )
-STATICFILES_DIRS = (
+
+PYSCSS_LOAD_PATHS = [
     os.path.join(BASE_DIR, 'fh', 'static'),
+    os.path.join(BASE_DIR, 'fh', 'static', 'bower_components'),
+    os.path.join(BASE_DIR, 'fh', 'static', 'bower_components', 'bootstrap-sass', 'assets', 'stylesheets'),
+]
+
+PIPELINE_CSS = {
+    'css': {
+        'source_filenames': (
+            'bower_components/fontawesome/css/font-awesome.css',
+            'stylesheets/app.scss',
+        ),
+        'output_filename': 'app.css',
+    },
+}
+PIPELINE_JS = {
+    'js': {
+        'source_filenames': (
+            'bower_components/jquery/dist/jquery.min.js',
+            'js/app.js',
+        ),
+        'output_filename': 'app.js',
+    },
+}
+PIPELINE_CSS_COMPRESSOR = None
+PIPELINE_JS_COMPRESSOR = None
+
+PIPELINE_COMPILERS = (
+    'fh.pipeline.PyScssCompiler',
 )
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'fh.pipeline.GzipManifestPipelineStorage'
 
 
 # Media uploads
@@ -170,7 +198,6 @@ AWS_STORAGE_BUCKET_NAME = 'freedom-house-media'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 
 # Templates
@@ -208,7 +235,7 @@ TEMPLATE_DIRS = (
 SPEAKUP_DISCOURSE_URL = 'http://speakupmzansi.org.za'
 SPEAKUP_DISCOURSE_API_KEY = env.get('DISCOURSE_API_KEY')
 
-SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site
+SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za'  # this site
 
 
 # Google Analytics
@@ -240,7 +267,7 @@ COMPRESS_CSS_FILTERS = [
 
 # CMS config
 CMS_LANGUAGES = {
-    ## Customize this
+    # Customize this
     'default': {
         'public': True,
         'hide_untranslated': False,
@@ -258,6 +285,7 @@ CMS_LANGUAGES = {
 }
 
 CMS_TEMPLATES = (
+    ('index.html', 'Homepage'),
     ('page.html', 'Simple page'),
     ('cms_twocolumn.html', 'Two column page'),
     ('cms_threecolumn.html', 'Three column page'),
