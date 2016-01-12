@@ -6,6 +6,8 @@
     <title>{% block title %}{% endblock %} - Speak Up Mzansi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Speak Up Mzansi">
     <meta name="description" content="Building better conversations between citizens and their leaders.">
     <meta property="og:image" content="http://info.speakupmzansi.org.za/static/images/logo-large.png">
 
@@ -21,14 +23,13 @@
   <body {% block body-attributes %}{% endblock %} class='{% block body-class %}{% endblock %}'>
     {% cms_toolbar %}
 
-    <div id="wrapper">
+    <div id="page-content">
       {% include 'includes/header.html' %}
-
       {% block content %}
       {% endblock content %}
-
-      {% include 'includes/footer.html' %}
     </div>
+
+    {% include 'includes/footer.html' %}
 
     {# for DjangoCMS #}
     {% render_block "js" %}

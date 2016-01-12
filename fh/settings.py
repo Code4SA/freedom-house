@@ -285,7 +285,6 @@ CMS_LANGUAGES = {
 }
 
 CMS_TEMPLATES = (
-    ('index.html', 'Homepage'),
     ('page.html', 'Simple page'),
     ('cms_twocolumn.html', 'Two column page'),
     ('cms_threecolumn.html', 'Three column page'),

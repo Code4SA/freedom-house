@@ -1,17 +1,13 @@
-<!-- FOOTER -->
-<footer id="footer">
+{% load staticfiles %}
+
+<footer class="site-footer">
   <div class="container">
+    <h4>Speak Up Mzansi</h4>
+    <p>Building better conversations between citizens and their leaders.</p>
 
     <div class="row">
 
       <div class="spaced col-sm-3">
-        <h4>Speak Up Mzansi</h4>
-        <ul class="list-unstyled">
-          <li>
-            Building better conversations between citizens and their leaders.
-          </li>
-        </ul>
-
         <p>
           <a href="https://play.google.com/store/apps/details?id=za.org.speakupmzansi.app">
             <img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png">
@@ -20,24 +16,24 @@
 
         <p>
           <a href="http://www.windowsphone.com/en-us/store/app/speak-up-mzansi/69ddfdb0-cdec-485d-9bad-74f4e519669c">
-            <img alt="Get it on Google Play" src="/static/images/154x40_WPS_Download_gry.png">
+            <img alt="Get it on Google Play" src="{% static 'images/154x40_WPS_Download_gry.png' %}">
           </a>
         </p>
       </div>
 
       <div class="spaced logos">
         <div class="col-sm-3">
-          <a href="http://www.freedomhouse.org/country/south-africa"><img src="{{ STATIC_URL }}images/FH Logo.png" alt="Freedom House"></a>
+          <a href="http://www.freedomhouse.org/country/south-africa"><img src="{% static 'images/FH Logo.png' %}" alt="Freedom House"></a>
           <br>
-          <a href="http://www.cell-life.org/"><img src="{{ STATIC_URL }}images/Cell Life Logo.png" alt="Cell Life"></a>
+          <a href="http://www.cell-life.org/"><img src="{% static 'images/Cell Life Logo.png' %}" alt="Cell Life"></a>
         </div>
         <div class="col-sm-3">
-          <a href="http://www.ddp.org.za"><img src="{{ STATIC_URL }}images/DDP Logo.jpg" alt="DDP"></a>
+          <a href="http://www.ddp.org.za"><img src="{% static 'images/DDP Logo.jpg' %}" alt="DDP"></a>
           <br>
-          <a href="http://khanyacollege.org.za/"><img src="{{ STATIC_URL }}images/Khanya College Logo.gif" alt="Khanya College"></a>
+          <a href="http://khanyacollege.org.za/"><img src="{% static 'images/Khanya College Logo.gif' %}" alt="Khanya College"></a>
         </div>
         <div class="col-sm-3">
-          <a href="http://www.code4sa.org/"><img src="{{ STATIC_URL }}images/code4sa-logo.png" alt="Code for South Africa logo" class="code4sa-logo"></a>
+          <a href="http://www.code4sa.org/"><img src="{% static 'images/code4sa-logo.png' %}" alt="Code for South Africa logo" class="code4sa-logo"></a>
         </div>
 
       </div>
@@ -46,6 +42,3 @@
   </div>
 
 </footer>
-<!-- /FOOTER -->
-
-<a href="#" id="toTop"></a>

@@ -1,24 +1,80 @@
-{% extends "general.html" %}
+{% extends "base.html" %}
 {% load cms_tags %}
 
-{% block body %}
-<div class="container">
-  <h2>Join the conversation</h2>
-  <a href="#" class="btn btn-default">Join the conversation</a>
+{% block content %}
+<div class="jumbotron page-header text-center darken-bg" id="home-header">
+  <div class="container">
+    <h1><strong>Join</strong> the conversation</h1>
+    <p>Connecting citizens and their elected leaders</p>
+    <p>
+      <a class="btn btn-transparent btn-lg" href="#" role="button">Sign Up</a>
+    </p>
+  </div>
 </div>
 
-<div class="container">
-  <h2>Speak Up</h2>
+<section>
+  <div class="container text-center">
+    <div class="row">
+    <h1 class="section-heading"><strong>Speak</strong> up<h1>
+    </h1>
+    <div class="row">
+      <div class="col-md-4">
+        <i></i>
+        <h2>How to vote</h2>
+        <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <p>
+          <a class="btn btn-primary" href="#" role="button">Start talking</a>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h2>Political parties</h2>
+        <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <p>
+          <a class="btn btn-primary" href="#" role="button">Start talking</a>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h2>Election issues</h2>
+        <p>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+        <p>
+          <a class="btn btn-primary" href="#" role="button">Start talking</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="row">
-    <div class="col-sm-4">
-      {% placeholder "call-to-action 1" %}
+<div class="jumbotron" id="ward-councillor-search">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Who is Your <strong>Ward Councillor?</strong></h1>
+        <p>Find out who represents you where you live.</p>
+        <form>
+          <p>
+            <input type="text" class="form-control" placeholder="What is your address?">
+          </p>
+          <p>
+            <a class="btn btn-transparent btn-lg" href="#" role="button">Find now</a>
+          </p>
+        </form>
+        <p><small><a href="#">Use your browser location</a></small></p>
+      </div>
     </div>
-    <div class="col-sm-4">
-      {% placeholder "call-to-action 2" %}
-    </div>
-    <div class="col-sm-4">
-      {% placeholder "call-to-action 3" %}
+  </div>
+</div>
+
+<div class="jumbotron darken-bg" id="download-app">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" id="phone-preview">
+        <img src="/img/blackberry.png" class="img-responsive">
+      </div>
+      <div class="col-md-8">
+        <h1>Download our APP, <br><strong>join the conversation!</strong></h1>
+        <p>For the latest news, views and conversations, <br>download our app from the AppStore or Google play.</p>
+        <p>[Google play button] [Apple AppStore button]</p>
+      </div>
     </div>
   </div>
 </div>

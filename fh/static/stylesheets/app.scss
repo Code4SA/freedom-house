@@ -1,5 +1,76 @@
+@charset "utf-8";
+
 $icon-font-path: '../bower_components/bootstrap-sass/assets/fonts/bootstrap/';
 
-@import '_bootstrap.scss';
+//
+// Variable Overrides
+// --------------------------------------------------
 
-// put application-specific styles here
+
+//== Colors
+//
+
+$black: #000;
+$white: #fff;
+
+$green-dark: #063;
+$green-light: #9c6;
+
+$red-dark: #b55143;
+
+$gray-base: #000 !default;
+$gray-darker: lighten($gray-base, 13.5%) !default; // #222
+$gray-dark: lighten($gray-base, 20%) !default;   // #333
+$gray: lighten($gray-base, 33.5%) !default; // #555
+$gray-light: lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter: lighten($gray-base, 93.5%) !default; // #eee
+
+$brand-primary: $green-dark !default;
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
+
+$brand-secondary: $red-dark;
+
+//== Scaffolding
+//
+$body-bg: $gray-lighter !default;
+$link-hover-decoration: none !default;
+
+//== Typography
+//
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,900);
+
+$font-family-sans-serif: "Roboto", Helvetica, Arial, sans-serif !default;
+$font-family-base: $font-family-sans-serif !default;
+
+$font-size-base: 15px !default;
+
+$line-height-base: 1.8 !default;
+
+//== Navbar
+//
+
+$navbar-height: 60px !default;
+$navbar-default-color: $white !default;
+$navbar-default-bg: transparent !default;
+$navbar-default-link-color: $white !default;
+$navbar-default-link-hover-color: $white !default;
+
+//== Buttons
+//
+
+$btn-primary-bg: $red-dark !default;
+
+//== Jumbotron
+//
+
+$jumbotron-color: $white !default;
+$jumbotron-bg: $gray !default;
+$jumbotron-font-size: ceil(($font-size-base * 1.4)) !default;
+$jumbotron-heading-font-size: ceil(($font-size-base * 3.7)) !default;
+
+@import '_bootstrap.scss';
+@import 'site.scss';
