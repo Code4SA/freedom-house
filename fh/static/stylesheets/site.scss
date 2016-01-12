@@ -100,8 +100,19 @@ section{
 }
 
 //== Footer
-footer{
+footer.site-footer {
 	background-color: $green-light;
+	padding: 48px 0px;
+
+	.logos {
+	  a { display: block }
+	  img {
+	    width: 120px;
+	    height: auto;
+	    max-width: 100%;
+	    margin-bottom: 20px;
+	  }
+	}
 }
 
 //== Helper classes
@@ -109,3 +120,5 @@ footer{
 .darken-bg{
 	box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.3);
 }
+
+
