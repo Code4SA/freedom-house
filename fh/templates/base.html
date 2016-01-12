@@ -1,4 +1,4 @@
-{% load cms_tags staticfiles menu_tags pipeline %}
+{% load cms_tags staticfiles menu_tags pipeline sekizai_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -9,8 +9,10 @@
     <meta name="description" content="Building better conversations between citizens and their leaders.">
     <meta property="og:image" content="http://info.speakupmzansi.org.za/static/images/logo-large.png">
 
+    {# for DjangoCMS #}
+    {% render_block "css" %}
     {% block head-css %}
-    {% stylesheet "css" %}
+      {% stylesheet "css" %}
     {% endblock %}
 
     {% block head-meta %}{% endblock %}
@@ -28,8 +30,9 @@
       {% include 'includes/footer.html' %}
     </div>
 
+    {# for DjangoCMS #}
+    {% render_block "js" %}
     {% block js %}
-
       <!--[if lte IE 8]>
         <script src="{% static 'js/respond.js' %}"></script>
       <![endif]-->
