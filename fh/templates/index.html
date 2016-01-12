@@ -1,0 +1,25 @@
+{% extends "general.html" %}
+{% load cms_tags %}
+
+{% block body %}
+<div class="container">
+  <h2>Join the conversation</h2>
+  <a href="#" class="btn btn-default">Join the conversation</a>
+</div>
+
+<div class="container">
+  <h2>Speak Up</h2>
+
+  <div class="row">
+    <div class="col-sm-4">
+      {% placeholder "call-to-action 1" %}
+    </div>
+    <div class="col-sm-4">
+      {% placeholder "call-to-action 2" %}
+    </div>
+    <div class="col-sm-4">
+      {% placeholder "call-to-action 3" %}
+    </div>
+  </div>
+</div>
+{% endblock %}
