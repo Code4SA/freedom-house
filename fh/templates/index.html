@@ -39,15 +39,15 @@
       <div class="col-md-8 col-md-offset-2">
         <h1>Who is Your <strong>Ward Councillor?</strong></h1>
         <p>Find out who represents you where you live.</p>
-        <form>
+        <form class="cllr" method="get" action="/councillor/">
           <p>
-            <input type="text" class="form-control" placeholder="What is your address?">
+            <input type="text" name="address" class="form-control" placeholder="What is your address?">
           </p>
           <p>
-            <a class="btn btn-transparent btn-lg" href="#" role="button">Find now</a>
+            <button type="submit" class="btn btn-transparent btn-lg" role="button">Find now</button>
           </p>
         </form>
-        <p><small><a href="#">Use your browser location</a></small></p>
+        <p><small><a href="#" class="locate">Use your current location</a></small></p>
       </div>
     </div>
   </div>
