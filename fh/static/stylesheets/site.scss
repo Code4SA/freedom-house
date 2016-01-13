@@ -5,6 +5,11 @@
 //== Scaffolding
 //
 
+html, body{
+	max-width: 100%;
+  overflow-x: hidden;
+}
+
 .page-header{
 	background: $gray;
 	color: $white;
@@ -15,7 +20,7 @@
 //== Navbar
 //
 
-.navbar-fixed-top{
+.navbar{
 	text-shadow: 0 0 2px rgba(0,0,0,0.7);
 	i{
 		font-size: 2em;
@@ -40,7 +45,8 @@
 //
 
 section{
-	padding: 48px 0;
+	background-color: $body-bg;
+	padding: 48px;
 	.section-heading{
 		margin-top: 0;
 	}
