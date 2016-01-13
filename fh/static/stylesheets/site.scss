@@ -121,4 +121,10 @@ footer.site-footer {
 	box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.3);
 }
 
+// Page-specific settings
 
+.ward-councillor-page {
+  .page-header {
+    background-color: $red-dark;
+  }
+}
