@@ -173,6 +173,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'app.css',
     },
+    'mobile': {
+        'source_filenames': (
+            'stylesheets/bbui.css',
+            'stylesheets/mobile.css',
+        ),
+        'output_filename': 'm.css',
+    }
 }
 PIPELINE_JS = {
     'js': {
