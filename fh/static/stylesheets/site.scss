@@ -139,3 +139,27 @@ footer.site-footer {
     background-color: $red-dark;
   }
 }
+
+#home-header .call-to-action {
+  h2 {
+    font-size: 39px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 67.5px;
+    }
+  }
+  
+  .btn {
+    // large button
+    @include button-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
+
+    // transparent
+    background: transparent;
+    color: $white;
+    border-color: $white;
+    &:hover{
+	    color: inherit;
+	    background: rgba(0,0,0,0.6);
+    }
+  }
+}
