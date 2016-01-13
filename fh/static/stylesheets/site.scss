@@ -21,13 +21,36 @@ html, body{
 //
 
 .navbar{
+        border-bottom: 0;
 	text-shadow: 0 0 2px rgba(0,0,0,0.7);
 	i{
 		font-size: 2em;
 		vertical-align: middle;
 	}
 	#search-btn{
+		text-shadow: none;
+		background: $gray-light !important;
+	}
+}
+
+.navbar.scrolled{
+	background-color: $white;
+	color: $black;
+	text-shadow: none;
+	li > a {
+		color: $black;
+		i{
+			color: $brand-primary;
+		}
+	}
+	li > a:hover{
+		color: $brand-primary !important;
+	}
+	#search-btn{
 		background: $gray-light;
+		a i{
+			color: $white;
+		}
 	}
 }
 

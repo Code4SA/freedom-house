@@ -24,3 +24,7 @@
     });
   }
 })();
+
+$(document).on('scroll', function() {
+  $(".navbar").toggleClass("scrolled", $(document).scrollTop() >= 60);
+});
