@@ -121,6 +121,17 @@ footer.site-footer {
 	box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.3);
 }
 
+/* prevent zoom on iOS */
+@media (max-width: 767px) {
+  input[type=text],
+  input[type=email],
+  input[type=url],
+  input[type=tel],
+  input[type=search] {
+    font-size: 16px;
+  }
+}
+
 // Page-specific settings
 
 .ward-councillor-page {
