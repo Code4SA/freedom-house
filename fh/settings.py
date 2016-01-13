@@ -94,6 +94,8 @@ INSTALLED_APPS = (
 
     # store stuff in s3
     'storages',
+    'filer',
+    'easy_thumbnails',
 
     # cms core
     'cms',
@@ -114,6 +116,12 @@ INSTALLED_APPS = (
     'djangocms_picture',
     'djangocms_teaser',
     'djangocms_video',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_link',
+    'cmsplugin_filer_image',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_video',
 
     # choose URLs based on domains
     'django_hosts',
@@ -189,16 +197,30 @@ STATICFILES_STORAGE = 'fh.pipeline.GzipManifestPipelineStorage'
 
 
 # Media uploads
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_S3_SECURE_URLS = False       # use http instead of https
-AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+if DEBUG:
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = "/tmp/fh/images"
+else:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_S3_SECURE_URLS = False       # use http instead of https
+    AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 
-AWS_S3_ACCESS_KEY_ID = env.get('AWS_ACCESS_KEY_ID')
-AWS_S3_SECRET_ACCESS_KEY = env.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'freedom-house-media'
+    AWS_S3_ACCESS_KEY_ID = env.get('AWS_ACCESS_KEY_ID')
+    AWS_S3_SECRET_ACCESS_KEY = env.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = 'freedom-house-media'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# high res image thumbnails
+THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+    'easy_thumbnails.processors.background',
+)
 
 
 # Templates
