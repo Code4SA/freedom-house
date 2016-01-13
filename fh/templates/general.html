@@ -8,28 +8,16 @@
 {% block title %}{% page_attribute "page_title" %}{% endblock %}
 
 {% block content %}
-<!-- PAGE TOP -->
-<section class="page-title">
-<div class="container">
-
-    <header>
-
-      {% block breadcrumb %}
-      {#% show_breadcrumb %#}
-      {% endblock %}
-
-      <h2><!-- Page Title -->
-        <strong>{% page_attribute "page_title" %}</strong>
-      </h2><!-- /Page Title -->
-
-    </header>
-
+<div class="jumbotron page-header">
+  <div class="container">
+    <h1>{% page_attribute "page_title" %}</h1>
   </div>
-</section>
-<!-- /PAGE TOP -->
+</div>
 
-<section id='main' class='container {% block main-class %}{% endblock %}'>
-  {% block body %}{% endblock %}
+<section>
+  <div class="container">
+    {% block body %}{% endblock %}
+  </div>
 </section>
 
 {% endblock content %}
