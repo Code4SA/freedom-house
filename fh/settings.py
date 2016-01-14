@@ -318,7 +318,8 @@ CMS_TEMPLATES = (
     ('page.html', 'Simple page'),
     ('cms_twocolumn.html', 'Two column page'),
     ('cms_threecolumn.html', 'Three column page'),
-    ('feature.html', 'Page with Feature')
+    ('feature.html', 'Page with Feature'),
+    ('home.html', 'Homepage'),
 )
 
 CMS_PERMISSION = True
