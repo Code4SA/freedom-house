@@ -4598,7 +4598,6 @@ a.bb5-button-highlight span {
 }
 
 .bb-pill-buttons .buttonLeft {
-    background: transparent url('../images/button/pillButtonRight.png') no-repeat scroll top right;
     color: White;
     display: block;
     float: left;
@@ -4610,7 +4609,6 @@ a.bb5-button-highlight span {
 }
 
 .bb-pill-buttons .buttonLeft span {
-    background: transparent url('../images/button/button.png') no-repeat;
     display: block;
     line-height: 39px;
     padding: 0px 0px 0px 10px;
@@ -4618,7 +4616,6 @@ a.bb5-button-highlight span {
 }
 
 .bb-pill-buttons .buttonRight {
-    background: transparent url('../images/button/btnRight.png') no-repeat scroll top right;
     color: White;
     display: block;
     float: left;
@@ -4630,7 +4627,6 @@ a.bb5-button-highlight span {
 }
 
 .bb-pill-buttons .buttonRight span {
-    background: transparent url('../images/button/button.png') no-repeat;
     background-position: -10px 0px; 
     display: block;
     line-height: 39px;
@@ -4639,7 +4635,6 @@ a.bb5-button-highlight span {
 }
 
 .bb-pill-buttons .buttonMiddle {
-    background: transparent url('../images/button/pillButtonRight.png') no-repeat scroll top right;
     color: White;
     display: block;
     float: left;
@@ -4651,7 +4646,6 @@ a.bb5-button-highlight span {
 }
 
 .bb-pill-buttons .buttonMiddle span {
-    background: transparent url('../images/button/button.png') no-repeat;
     display: block;
     line-height: 39px;
     padding: 0px 0px 0px 10px;
