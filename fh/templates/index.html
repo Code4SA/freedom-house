@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load cms_tags staticfiles %}
+
+{% block title %}Join the Conversation{% endblock %}
+
+{% block content %}
+<div class="jumbotron page-header text-center darken-bg with-bg-image" id="home-header">
+  <div class="container">
+    {% placeholder "Primary call to action" %}
+  </div>
+</div>
+
+<section>
+  <div class="container text-center">
+    <div class="row">
+    <h1 class="section-heading"><strong>Speak</strong> up<h1>
+    </h1>
+    <div class="row">
+      <div class="col-md-4">
+        {% placeholder "call to action 1" %}
+      </div>
+      <div class="col-md-4">
+        {% placeholder "call to action 2" %}
+      </div>
+      <div class="col-md-4">
+        {% placeholder "call to action 3" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="jumbotron" id="ward-councillor-search">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h1>Who is Your <strong>Ward Councillor?</strong></h1>
+        <p>Find out who represents you where you live.</p>
+        <form class="cllr" method="get" action="/councillor/">
+          <p>
+            <input type="text" name="address" class="form-control" placeholder="What is your address?">
+          </p>
+          <p>
+            <button type="submit" class="btn btn-transparent btn-lg" role="button">Find now</button>
+          </p>
+        </form>
+        <p><small><a href="#" class="locate">Use your current location</a></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron darken-bg" id="download-app">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4" id="phone-preview">
+        <img src="{% static 'images/blackberry.png' %}" class="img-responsive">
+      </div>
+      <div class="col-md-8">
+        <h1>Download our App, <br><strong>join the conversation!</strong></h1>
+        <p>For the latest news, views and conversations, download our app from Google play or the Windows Phone Store.</p>
+        <p> 
+          <a href="https://play.google.com/store/apps/details?id=za.org.speakupmzansi.app">
+            <img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png">
+          </a>
+
+          <a href="http://www.windowsphone.com/en-us/store/app/speak-up-mzansi/69ddfdb0-cdec-485d-9bad-74f4e519669c">
+            <img alt="Get it on Google Play" src="{% static 'images/154x40_WPS_Download_gry.png' %}">
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

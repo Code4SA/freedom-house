@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 import os
-import sys
 from os import environ as env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -90,10 +89,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     'django.contrib.humanize',
-     'django_extensions',
+    'pipeline',
+    'django_extensions',
 
     # store stuff in s3
     'storages',
+    'filer',
+    'easy_thumbnails',
 
     # cms core
     'cms',
@@ -102,9 +104,6 @@ INSTALLED_APPS = (
     'south',
     'sekizai',
     'reversion',
-
-    # Asset pipeline
-    'compressor',
 
     # cms plugins
     'djangocms_style',
@@ -117,6 +116,12 @@ INSTALLED_APPS = (
     'djangocms_picture',
     'djangocms_teaser',
     'djangocms_video',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_link',
+    'cmsplugin_filer_image',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_video',
 
     # choose URLs based on domains
     'django_hosts',
@@ -142,7 +147,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -152,25 +156,78 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    "pipeline.finders.PipelineFinder",
 )
-STATICFILES_DIRS = (
+
+PYSCSS_LOAD_PATHS = [
     os.path.join(BASE_DIR, 'fh', 'static'),
+    os.path.join(BASE_DIR, 'fh', 'static', 'bower_components'),
+    os.path.join(BASE_DIR, 'fh', 'static', 'bower_components', 'bootstrap-sass', 'assets', 'stylesheets'),
+]
+
+PIPELINE_CSS = {
+    'css': {
+        'source_filenames': (
+            'bower_components/fontawesome/css/font-awesome.css',
+            'stylesheets/app.scss',
+        ),
+        'output_filename': 'app.css',
+    },
+    'mobile': {
+        'source_filenames': (
+            'stylesheets/bbui.css',
+            'stylesheets/mobile.css',
+        ),
+        'output_filename': 'm.css',
+    }
+}
+PIPELINE_JS = {
+    'js': {
+        'source_filenames': (
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+            'js/app.js',
+        ),
+        'output_filename': 'app.js',
+    },
+}
+PIPELINE_CSS_COMPRESSOR = None
+PIPELINE_JS_COMPRESSOR = None
+
+PIPELINE_COMPILERS = (
+    'fh.pipeline.PyScssCompiler',
 )
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'fh.pipeline.GzipManifestPipelineStorage'
 
 
 # Media uploads
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_S3_SECURE_URLS = False       # use http instead of https
-AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+if DEBUG:
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = "/tmp/fh/images"
+else:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_S3_SECURE_URLS = False       # use http instead of https
+    AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 
-AWS_S3_ACCESS_KEY_ID = env.get('AWS_ACCESS_KEY_ID')
-AWS_S3_SECRET_ACCESS_KEY = env.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'freedom-house-media'
+    AWS_S3_ACCESS_KEY_ID = env.get('AWS_ACCESS_KEY_ID')
+    AWS_S3_SECRET_ACCESS_KEY = env.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = 'freedom-house-media'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# high res image thumbnails
+THUMBNAIL_HIGH_RESOLUTION = True
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+    'easy_thumbnails.processors.background',
+)
 
 
 # Templates
@@ -205,10 +262,10 @@ TEMPLATE_DIRS = (
 
 # Speak Up Mzansi
 
-SPEAKUP_DISCOURSE_URL = 'http://speakupmzansi.org.za'
+SPEAKUP_DISCOURSE_URL = 'http://forums.speakupmzansi.org.za'
 SPEAKUP_DISCOURSE_API_KEY = env.get('DISCOURSE_API_KEY')
 
-SPEAKUP_INFO_URL      = 'http://info.speakupmzansi.org.za' # this site
+SPEAKUP_INFO_URL      = 'http://speakupmzansi.org.za'  # this site
 
 
 # Google Analytics
@@ -240,7 +297,7 @@ COMPRESS_CSS_FILTERS = [
 
 # CMS config
 CMS_LANGUAGES = {
-    ## Customize this
+    # Customize this
     'default': {
         'public': True,
         'hide_untranslated': False,

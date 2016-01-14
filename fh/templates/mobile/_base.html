@@ -1,4 +1,4 @@
-{% load compress %}
+{% load pipeline static %}
 
 <!DOCTYPE html>
 <html>
@@ -7,10 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Building better conversations between citizens and their leaders.">
-    {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/bbui.css">
-    <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}less/mobile.less" charset="utf-8">
-    {% endcompress %}
+    {% stylesheet "mobile" %}
 
     {% block head-css %}{% endblock %}
     {% block head-meta %}{% endblock %}
@@ -50,7 +47,7 @@
 
     {% block javascript %}
 
-    <script type="text/javascript" src="{{ STATIC_URL }}/js/bbui.js"></script>
+    <script type="text/javascript" src="{% static 'js/bbui.js' %}"></script>
     <script type="text/javascript">
 if (navigator.userAgent.indexOf('BlackBerry') >= 0) {
   document.getElementById('wrapper').classList.add('is-bb');

@@ -1,4 +1,4 @@
-{% load cms_tags staticfiles sekizai_tags menu_tags %}
+{% load cms_tags staticfiles menu_tags pipeline sekizai_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -6,27 +6,53 @@
     <title>{% block title %}{% endblock %} - Speak Up Mzansi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Speak Up Mzansi">
     <meta name="description" content="Building better conversations between citizens and their leaders.">
     <meta property="og:image" content="http://info.speakupmzansi.org.za/static/images/logo-large.png">
 
+    {# for DjangoCMS #}
     {% render_block "css" %}
-    {% block head-css %}{% endblock %}
+    {% block head-css %}
+      {% stylesheet "css" %}
+    {% endblock %}
+
     {% block head-meta %}{% endblock %}
 
   </head>
-  <body {% block body-attributes %}{% endblock %} class='{% block body-class %}{% endblock %}'>
+  <body {% block body-attributes %}{% endblock %} class="{% block body-class %}{% endblock %}">
     {% cms_toolbar %}
 
-    <div id="wrapper">
+    <div id="page-content">
       {% include 'includes/header.html' %}
-
       {% block content %}
       {% endblock content %}
-
-      {% include 'includes/footer.html' %}
     </div>
 
+    {% include 'includes/footer.html' %}
+
+    {# for DjangoCMS #}
     {% render_block "js" %}
-    {% block javascript-libraries %}{% endblock %}
+    {% block js %}
+      <!--[if lte IE 8]>
+        <script src="{% static 'js/respond.js' %}"></script>
+      <![endif]-->
+      {% javascript "js" %}
+
+      {% if GOOGLE_ANALYTICS_TRACKING_ID and GOOGLE_ANALYTICS_DOMAIN %}
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create',
+           '{{ GOOGLE_ANALYTICS_TRACKING_ID }}',
+           '{{ GOOGLE_ANALYTICS_DOMAIN }}');
+        ga('send', 'pageview');
+      </script>
+      {% endif %}
+
+    {% endblock %}
   </body>
 </html>

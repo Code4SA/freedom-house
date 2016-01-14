@@ -1,4 +1,4 @@
-{% extends "general.html" %}
+{% extends "base.html" %}
 {% load cms_tags staticfiles sekizai_tags menu_tags %}
 
 {% block title %}Ward councillors{% endblock %}
@@ -9,14 +9,27 @@
     <meta property="og:description" content="Your ward councillor is your representative in your municipality. Find your councillor and their contact details here.">
 {% endblock %}
 
-{% block body %}
-<div id="councillor-iframe"></div>
+{% block body-class %}ward-councillor-page{% endblock %}
 
-<script type="text/javascript">
-var CouncillorEmbedOptions = {
-  qs: window.location.search,
-  shareUrl: 'http://info.speakupmzansi.org.za/councillor/'
-};
-</script>
-<script type="text/javascript" src="http://nearby.code4sa.org/static/councillor-embed.js"></script>
-{% endblock body %}
+{% block content %}
+<div class="jumbotron page-header">
+  <div class="container">
+    <h1>Find your Ward Councillor</h1>
+    <h2>Find out who represents you where you live</h2>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div id="councillor-iframe"></div>
+
+    <script type="text/javascript">
+    var CouncillorEmbedOptions = {
+      qs: window.location.search,
+      shareUrl: 'http://speakupmzansi.org.za/councillor/'
+    };
+    </script>
+    <script type="text/javascript" src="http://nearby.code4sa.org/static/councillor-embed.js"></script>
+  </div>
+</section>
+{% endblock %}
