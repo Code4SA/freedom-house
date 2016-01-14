@@ -228,6 +228,7 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.filters',
     'easy_thumbnails.processors.background',
 )
+FILER_ADMIN_ICON_SIZES = ('32', '48', '64')
 
 
 # Templates
