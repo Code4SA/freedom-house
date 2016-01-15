@@ -64,6 +64,28 @@ html, body{
 	padding: 10px 0;
 }
 
+//== Sidebar
+//
+
+.sidebar{
+	background-color: $gray-lightest;
+	height: 100%;
+	padding: 10px;
+}
+
+.sidebar-toggle{
+	top: $navbar-height;
+	width: $navbar-height;
+	text-align: center;
+	text-shadow: 0 0 2px rgba(0,0,0,0.7);
+	a{
+		font-size: 40px;
+		color: $white;
+		line-height: $navbar-height;
+		width: $navbar-height;  
+	}
+}
+
 //== Section
 //
 

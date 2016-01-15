@@ -23,13 +23,17 @@
   <body {% block body-attributes %}{% endblock %} class="{% block body-class %}{% endblock %}">
     {% cms_toolbar %}
 
-    <div id="page-content">
-      {% include 'includes/header.html' %}
-      {% block content %}
-      {% endblock content %}
-    </div>
+    <div id="wrapper">
+      <div class="sidebar-wrapper">
+        {% include 'includes/sidebar.html' %}
+      </div>
 
-    {% include 'includes/footer.html' %}
+      <div class="page-content-wrapper">
+        {% include 'includes/header.html' %}
+        {% block content %}{% endblock content %}
+        {% include 'includes/footer.html' %}
+      </div>
+    </div>
 
     {# for DjangoCMS #}
     {% render_block "js" %}
