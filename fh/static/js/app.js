@@ -28,3 +28,10 @@
 $(document).on('scroll', function() {
   $(".navbar").toggleClass("scrolled", $(document).scrollTop() >= 60);
 });
+
+//sidebar toggle
+$("#sidebar-toggle").on('click', function(e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+  $("#sidebar-toggle i").toggleClass("fa-angle-double-right fa-comments");
+});
