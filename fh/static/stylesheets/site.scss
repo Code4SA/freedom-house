@@ -219,3 +219,9 @@ footer.site-footer {
     }
   }
 }
+
+// responsive images in the content sidebar
+.content-sidebar img,
+.content-sidebar-secondary img {
+  max-width: 100%;
+}
