@@ -1,13 +1,14 @@
 {% load staticfiles %}
 
 <footer class="site-footer">
-  <div class="container">
-    <h4>Speak Up Mzansi</h4>
-    <p>Building better conversations between citizens and their leaders.</p>
-
+  <div class="container-fluid">
     <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <h4>Speak Up Mzansi</h4>
+        <p>Building better conversations between citizens and their leaders.</p>
+      </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-6 col-md-8 text-center">
         <p>
           <a href="https://play.google.com/store/apps/details?id=za.org.speakupmzansi.app">
             <img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_45.png">
@@ -20,20 +21,27 @@
           </a>
         </p>
       </div>
+    </div>
 
-      <div class="logos">
-        <div class="col-sm-3">
-          <a href="http://www.freedomhouse.org/country/south-africa"><img src="{% static 'images/FH Logo.png' %}" alt="Freedom House"></a>
-          <a href="http://www.cell-life.org/"><img src="{% static 'images/Cell Life Logo.png' %}" alt="Cell Life"></a>
-        </div>
-        <div class="col-sm-3">
-          <a href="http://www.ddp.org.za"><img src="{% static 'images/DDP Logo.jpg' %}" alt="DDP"></a>
-          <a href="http://khanyacollege.org.za/"><img src="{% static 'images/Khanya College Logo.gif' %}" alt="Khanya College"></a>
-        </div>
-        <div class="col-sm-3">
-          <a href="http://www.code4sa.org/"><img src="{% static 'images/code4sa-logo.png' %}" alt="Code for South Africa logo" class="code4sa-logo"></a>
-        </div>
+    <div class="row logos">
+      <div class="col-md-2">
+        <a href="http://www.freedomhouse.org/country/south-africa" target="_blank"><img src="{% static 'images/logo-freedom-house.png' %}" alt="Freedom House"></a>
+      </div>
 
+      <div class="col-md-2">
+        <a href="http://www.cell-life.org/" target="_blank"><img src="{% static 'images/logo-cell-life.png' %}" alt="Cell Life"></a>
+      </div>
+
+      <div class="col-md-2">
+        <a href="http://www.ddp.org.za" target="_blank"><img src="{% static 'images/logo-ddp.png' %}" alt="DDP"></a>
+      </div>
+
+      <div class="col-md-2">
+        <a href="http://khanyacollege.org.za/" target="_blank"><img src="{% static 'images/logo-khanya-college.png' %}" alt="Khanya College"></a>
+      </div>
+
+      <div class="col-md-2">
+        <a href="http://www.code4sa.org/" target="_blank"><img src="{% static 'images/logo-code4sa.png' %}" alt="Code for South Africa logo" class="code4sa-logo"></a>
       </div>
 
     </div>
