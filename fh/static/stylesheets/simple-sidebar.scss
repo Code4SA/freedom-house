@@ -88,6 +88,10 @@
     width: 0;
   }
 
+  #wrapper.toggled .sidebar {
+    z-index: -1;
+  }
+
   #wrapper.toggled .navbar {
     margin-right: 0;
   }
@@ -107,7 +111,7 @@
 /* Sidebar Styles */
 
 .sidebar {
-  z-index: -1;
+  z-index: 1;
   position: fixed;
   top: 0;
   right: 0;
